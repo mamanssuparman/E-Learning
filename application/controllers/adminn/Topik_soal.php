@@ -12,8 +12,8 @@ function __construct(){
 	}
 	public function index()
 	{
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$data['judul'] 		="Bank Soal";
@@ -28,8 +28,8 @@ function __construct(){
 	}
 	public function Add()
 	{
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$this->Mdl_admin->Add_topik_soal();
@@ -38,8 +38,8 @@ function __construct(){
 	}
 	public function Update()
 	{
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$this->Mdl_admin->Update_topik_soal();

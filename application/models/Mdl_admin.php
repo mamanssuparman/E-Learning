@@ -96,22 +96,31 @@ class Mdl_admin extends CI_Model {
 		$topik_detail 	=$this->input->post('topik_detail',TRUE);
 		//$id_mapel 		=$this->input->post('id_mapel',TRUE);
 		//$status_topik 	='1';
-		$eksekusi 		=$this->db->query("insert into tbl_topik(topik_nama,topik_detail)values('$topik_nama','$topik_detail')");
-		return $eksekusi;
+		$data=array(
+			'topik_nama' 		=>$topik_nama,
+			'topik_detail' 		=>$topik_detail
+		);
+		$this->db->insert('tbl_topik',$data);
 	}
 	public function Update_topik_soal()
 	{
 		$id_topik 		=$this->input->post('id_topik',TRUE);
 		$topik_nama 	=$this->input->post('topik_nama', TRUE);
 		$topik_detail 	=$this->input->post('topik_detail',TRUE);
-		$eksekusi 		=$this->db->query("update tbl_topik set topik_nama='$topik_nama', topik_detail='$topik_detail' where id_topik='$id_topik'");
-		return $eksekusi;
+		$data=array(
+			'topik_nama' 		=>$topik_nama,
+			'topik_detail' 		=>$topik_detail
+		);
+		$this->db->set($data);
+		$this->db->where('id_topik',$id_topik);
+		$this->db->update('tbl_topik');
+		
 	}
 	public function Delete_topik_soal()
 	{
 		$id_topik 		=$this->input->post('id_topik', TRUE);
-		$eksekusi 		=$this->db->query("delete from tbl_topik where id_topik='$id_topik'");
-		return $eksekusi;
+		$this->db->where('id_topik',$id_topik);
+		$this->db->delete('tbl_topik');
 	}
 	public function Save_soal()
 	{
@@ -254,13 +263,20 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 
 		//$detail_materi 	=$this->input->post('detail_materi',TRUE);
 		//$id_mapel		=$this->input->post('id_mapel',TRUE);
-		$eksekusi 		=$this->db->query("update tbl_materi set judul_materi='$judul_materi',detail_materi='$detail_materi' where id_materi='$kunci'");
-		return $eksekusi;
+		$data=array(
+			'judul_materi'		=>$judul_materi,
+			'detail_materi'		=>$detail_materi
+		);
+		$this->db->set($data);
+		$this->db->where('id_materi',$kunci);
+		$this->db->update('tbl_materi');
+		
 	}
 	public function Delete_materi($kunci)
 	{
-		$eksekusi 		=$this->db->query("delete from tbl_materi where id_materi='$kunci'");
-		return $eksekusi;
+		$this->db->where('id_materi',$kunci);
+		$this->db->delete('tbl_materi');
+	
 	}
 	public function get_data_lihat_soal($id_topik)
 	{
@@ -358,7 +374,7 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$eksekusi 	=$this->db->query("select * from tbl_materi where id_mapel='$id_mapel'");
 		return $eksekusi;
 	}
-	public function add_update_mapel_guru($id_group)
+	public function add_update_mapel_guru()
 	{
 		$id_group 		=$this->input->post('id_group', TRUE);
 		$id_gurunya 	=$this->input->post('id_guru', TRUE);
@@ -483,7 +499,8 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	}
 	public function get_detail_materi($id_materi)
 	{
-		return $this->db->query("select * from tbl_materi where id_materi='$id_materi'");
+		return $this->db->get_where('tbl_materi',array('id_materi'=>$id_materi));
+		
 	}
 	public function get_data_quiz_kelas($id_tes)
 	{
@@ -525,7 +542,7 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	public function update_tes1($id_quiz)
 	{
 		$this->db->trans_start();
-		$tesnya=$id_tes;
+		$tesnya=$id_quiz;
 		$id_kelas =$this->input->post('id_kelas', TRUE);
 		//$id_mapel =$this->input->post('id_',TRUE);
 		$result=array();

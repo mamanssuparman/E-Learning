@@ -35,7 +35,7 @@ function __construct(){
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$this->Mdl_admin->add_update_mapel_guru($id_group);
+		$this->Mdl_admin->add_update_mapel_guru();
 		$this->session->set_flashdata('berhasil','Data Guru berhasil di tambahkan.');
 		redirect('adminn/List_mapel_guru/');
 	}

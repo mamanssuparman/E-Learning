@@ -12,7 +12,7 @@ function __construct(){
 	}
 	public function index($id_kelas=null)
 	{
-		$this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity();
 		$username 	=$this->session->userdata('username');
 		$id_kelas 	=$this->session->userdata('kelas');
 		$data['data_siswa']		=$this->Mdl_user->get_data_siswa($username);
@@ -22,7 +22,7 @@ function __construct(){
 	}
 	public function send()
 	{
-		$this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity();
 		$this->Mdl_user->Send_diskusi();
 		$id_kelas 	=$this->session->userdata('kelas');
 		redirect('user/Diskusi/'.$id_kelas);

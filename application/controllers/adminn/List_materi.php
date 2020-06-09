@@ -13,8 +13,8 @@ function __construct(){
 	public function index()
 	{
 		//$kunci				=$this->uri->segment(4);
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$data['judul'] 		="Materi";
@@ -30,8 +30,8 @@ function __construct(){
 	}
 	public function Update()
 	{
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$id_materi 	=$this->input->post('id_materi',TRUE);
@@ -41,8 +41,8 @@ function __construct(){
 	}
 	public function Delete()
 	{
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$id_materi 	=$this->input->post('id_materi',TRUE);
@@ -52,8 +52,8 @@ function __construct(){
 	}
 	public function Detail()
 	{
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$id_materi =$this->uri->segment(4);

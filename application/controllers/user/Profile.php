@@ -12,7 +12,7 @@ function __construct(){
 	}
 	public function index($id_user=null)
 	{
-		$this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity();
 		$username 	=$this->session->userdata('username');
 		$data['data_siswa']		=$this->Mdl_user->get_data_siswa($username);
 		$data['data_siswa'] 		=$this->Mdl_user->get_data_siswa($username);
