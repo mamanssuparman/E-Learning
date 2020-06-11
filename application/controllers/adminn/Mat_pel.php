@@ -7,6 +7,7 @@ function __construct(){
 		$this->load->model('Mdl_admin');
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
+		$this->load->library('form_validation');
 		$this->load->helper('cookie');
 		//$this->load->libraries('session');
 	}
@@ -57,11 +58,20 @@ function __construct(){
 	{
 		// $this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
+		$id_pengguna 				=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$this->Mdl_admin->Add_Mat_pel();
-		$this->session->set_flashdata('berhasil','Data Mata Pelajaran Berhasi di simpan.!!');
-		redirect('adminn/Mat_pel');
+		$this->form_validation->set_rules('nama_mapel','nama_mapel','required|is_unique[tbl_mapel.nama_mapel]|htmlspecialchars');
+		$this->form_validation->set_rules('deskripsi','deskripsi','required|htmlspecialchars');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Data Materi Pelajaran gagal di simpan, Cek kembali data Inputan.!!');
+			redirect('adminn/Mat_pel');
+		}
+		else{
+			$this->Mdl_admin->Add_Mat_pel();
+			$this->session->set_flashdata('berhasil','Data Mata Pelajaran Berhasi di simpan.!!');
+			redirect('adminn/Mat_pel');
+		}
+		
 	}
 	public function Update()
 	{
@@ -72,11 +82,21 @@ function __construct(){
 		
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$id_mapel 		=$this->input->post('id_mapel', TRUE);
+		$this->form_validation->set_rules('nama_mapel','nama_mapel','required|htmlspecialchars');
+		$this->form_validation->set_rules('deskripsi','deskripsi','required|htmlspecialchars');
+		// $this->form_validation->set_rules('');
 		//$id_kelas 		=$this->input->post('id_kelasnya', TRUE);
-		$this->Mdl_admin->Update_mat_pel($id_mapel);
-		$this->Mdl_admin->Update_mat_pel1();
-		$this->session->set_flashdata('berhasil','Data Mata Pelajaran Berhasil di perbaharui.!!');
-		redirect('adminn/Mat_pel');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Data Materi Pelajaran Gagal di perbaharui. Cek Kembali data Inputan.!!');
+			redirect('adminn/Mat_pel');
+		}
+		else{
+			$this->Mdl_admin->Update_mat_pel($id_mapel);
+			$this->Mdl_admin->Update_mat_pel1();
+			$this->session->set_flashdata('berhasil','Data Mata Pelajaran Berhasil di perbaharui.!!');
+			redirect('adminn/Mat_pel');	
+		}
+		
 	}
 	public function Delete()
 	{

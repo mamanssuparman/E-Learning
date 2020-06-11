@@ -7,6 +7,7 @@ function __construct(){
 		$this->load->model('Mdl_admin');
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
+		$this->load->library('form_validation');
 		$this->load->helper('cookie');
 		//$this->load->libraries('session');
 	}
@@ -31,9 +32,17 @@ function __construct(){
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$this->Mdl_admin->save_tapel();
-		$this->session->set_flashdata('berhasil','Data Tahun Pelajaran Berhasil Di Simpan');
-		redirect('adminn/Tahun_pelajaran/');
+		$this->form_validation->set_rules('nama_tapel','nama_tapel','required|is_unique[tbl_tapel.nama_tapel]|htmlspecialchars');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Data tahun pelajaran tidak boleh sama.!');
+			redirect('adminn/Tahun_pelajaran/');
+		}
+		else{
+			$this->Mdl_admin->save_tapel();
+			$this->session->set_flashdata('berhasil','Data Tahun Pelajaran Berhasil Di Simpan');
+			redirect('adminn/Tahun_pelajaran/');
+		}
+		
 	}
 	public function Delete()
 	{
@@ -46,7 +55,7 @@ function __construct(){
 		$this->Mdl_admin->Delete_tapel($id_tapel);
 		$this->db->trans_complete();
 		if ($this->db->trans_status()===1) {
-			$this->session->set_flashdata('berhasil','Data Tahun Pelajaran tidak bisa di hapus.!!');
+			$this->session->set_flashdata('gagal','Data Tahun Pelajaran tidak bisa di hapus.!!');
 			redirect('adminn/Tahun_pelajaran/');
 		}
 		else{

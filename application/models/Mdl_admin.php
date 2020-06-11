@@ -180,7 +180,7 @@ class Mdl_admin extends CI_Model {
 	}
 	public function get_data_mat_pel_search($id_mapel)
 	{
-		$this->db->get_where('tbl_mapel',array('id_mapel'=>$id_mapel));
+		return $this->db->get_where('tbl_mapel',array('id_mapel'=>$id_mapel));
 		// $eksekusi 	=$this->db->query("select * from tbl_mapel where id_mapel='$id_mapel'");
 		// return $eksekusi;
 		 
@@ -195,7 +195,7 @@ class Mdl_admin extends CI_Model {
 			'nama_mapel' 		=>$nama_mapel,
 			'deskripsi' 		=>$deskripsi
 		);
-		$this->db->insert($data);
+		$this->db->insert('tbl_mapel',$data);
 		$id_mapel 	=$this->db->insert_id();
 		$result=array();
 		foreach ($id_kelas as $key => $value) {
@@ -245,8 +245,13 @@ class Mdl_admin extends CI_Model {
 		$judul_materi 	=preg_replace("/[^a-zA-Z0-9]/", " ", $this->input->post('judul_materi',TRUE));
 		$detail_materi 	=$this->input->post('detail_materi',TRUE);
 		//$id_mapel		=$this->input->post('id_mapel', TRUE);
-		$eksekusi 	=$this->db->query("insert into tbl_materi(judul_materi,detail_materi,id_mapel) values('$judul_materi','$detail_materi','$id_mapel')");
-		return $eksekusi;
+		$data=array(
+			'judul_materi'		=>$judul_materi,
+			'detail_materi' 	=>$detail_materi,
+			'id_mapel'			=>$id_mapel
+		);
+		return $this->db->insert('tbl_materi',$data);
+		
 	}
 	public function get_data_materi()
 	{
@@ -277,6 +282,11 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$this->db->where('id_materi',$kunci);
 		$this->db->delete('tbl_materi');
 	
+	}
+	public function Delete_list_materi($id_materi)
+	{
+		$this->db->where('id_materi',$id_materi);
+		$this->db->delete('tbl_materi');
 	}
 	public function get_data_lihat_soal($id_topik)
 	{
@@ -371,8 +381,7 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	}
 	public function get_materi_mapel($id_mapel)
 	{
-		$eksekusi 	=$this->db->query("select * from tbl_materi where id_mapel='$id_mapel'");
-		return $eksekusi;
+		return $this->db->get_where('tbl_materi',array('id_mapel'=>$id_mapel));
 	}
 	public function add_update_mapel_guru()
 	{
@@ -552,5 +561,10 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		}
 		$this->db->insert_batch('tbl_tes_group_kelas',$result);
 		$this->db->trans_complete();
+	}
+	public function Delete_materi_mapel($id_materi)
+	{
+		$this->db->where('id_materi',$id_materi);
+		$this->db->delete('tbl_materi');
 	}
 }

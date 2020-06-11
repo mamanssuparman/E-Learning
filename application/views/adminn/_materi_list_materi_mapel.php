@@ -30,15 +30,18 @@
 				<tbody>
 					<?php 
 						$no=1;
-						foreach ($data_list_mapel->result_array() as $showmaterimapel){
+						foreach ($data_list_mapel->result_array() as $showmaterimapel):
 							echo "<tr>";
 								echo '<td>'.$no++.'</td>';
 								echo "<td>$showmaterimapel[judul_materi]</td>";
 								echo "<td>$showmaterimapel[detail_materi]</td>";?>
-								<td><a href="<?php echo base_url();?>index.php/adminn/List_materi/Detail/<?php echo $showmaterimapel['id_materi'];?>" class="btn btn-info btn-xs" title="Lihat Materi"><li class="fa fa-search"></li> </a></td>
+								<td>
+									<a href="<?php echo base_url();?>index.php/adminn/List_materi/Detail/<?php echo $showmaterimapel['id_materi'];?>" class="btn btn-info btn-xs" title="Lihat Materi"><li class="fa fa-search"></li> </a>
+									<button class="btn btn-danger btn-xs" data-toggle="modal" data-target='#modal-hapus-<?php echo $showmaterimapel['id_materi'] ?>'> <li class="fa fa-times"></li> </button>
+								</td>
 						
 						<?php	echo "</tr>";
-						}
+						endforeach;
 					?>
 				</tbody>
 			</table>	
@@ -47,3 +50,36 @@
 	</div>
 </div>
 <!-- Modal lihat materi -->
+<?php 
+	foreach ($data_list_mapel->result_array() as $showmaterimapel):
+?>
+<div class="modal fade" id="modal-hapus-<?php echo $showmaterimapel['id_materi'] ?>">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h4 class="modal-title">Hapus Materi Pelajaran</h4>
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <span aria-hidden="true">&times;</span>
+	      </button>
+	    </div>
+	    <form method="post" action="<?php echo base_url();?>index.php/adminn/Materi/Delete/<?php echo $showmaterimapel['id_materi'] ?>/<?php echo $this->uri->segment(4);?>">
+	    <div class="modal-body">
+	    	<input type="hidden" name="id_tapel" value="<?php echo $showmaterimapel['id_materi'] ?>">
+	      <p>
+	      	Apakah anda yakin akan menghapus Materi <b> <?php echo $showmaterimapel['judul_materi'] ;?> </b>
+	      </p>
+	      
+	    </div>
+	    <div class="modal-footer justify-content-between">
+	      <button type="button" class="btn btn-danger" data-dismiss="modal"><li class="fa fa-undo"></li> Batal</button>
+	      <button type="submit" class="btn btn-success"><li class="fa fa-recycle"></li> Hapus</button>
+	    </div>
+	    </form>
+	  </div>
+	  <!-- /.modal-content -->
+	</div>
+<!-- /.modal-dialog -->
+</div>
+<?php 
+	endforeach;
+?>

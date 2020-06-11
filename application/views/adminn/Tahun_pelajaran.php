@@ -1,4 +1,5 @@
-<div class="flash-data" data-flashdataok="<?php echo $this->session->flashdata('berhasil');?>"></div>
+
+<?php echo validation_errors();?>
 <div class="row">
 	<div class="col-md-12">
 		<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Tahun Pelajaran</button>

@@ -7,6 +7,7 @@ function __construct(){
 		$this->load->model('Mdl_admin');
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
+		$this->load->library('form_validation');
 		$this->load->helper('cookie');
 		//$this->load->libraries('session');
 	}
@@ -34,6 +35,10 @@ function __construct(){
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		$this->form_validation->set_rules('username','username','required|htmlspecialchars|is_unique[tbl_guru.unsername]');
+		$this->form_validation->set_rules('nama','nama','required|htmlspecialchars');
+		$this->form_validation->set_rules('panserword','panserword','required|htmlspecialchars');
+		$this->form_validation->set_rules('tempat_lahir','tempat_lahir','required|htmlspecialchars');
 		$this->Mdl_admin->Save_guru();
 		$this->session->set_flashdata('berhasil','Data Guru berhasil di simpan.!!');
 		redirect('adminn/Guru/');

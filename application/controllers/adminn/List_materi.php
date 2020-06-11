@@ -66,4 +66,12 @@ function __construct(){
 		$data['detail_materi'] =$this->Mdl_admin->get_detail_materi($id_materi);
 		$this->load->view('adminn/admin_view.php',$data);
 	}
+	public function Delete_list($id_materi=null)
+	{
+		$id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		$this->Mdl_admin->Delete_list_materi($id_materi);
+		$this->session->set_flashdata('berhasil','Data Materi berhasil di hapus.!!');
+		redirect('adminn/List_materi/');
+	}
 }

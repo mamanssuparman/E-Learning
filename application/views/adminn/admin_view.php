@@ -32,6 +32,7 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('_assets/boot_select/css/bootstrap-select.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('_assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('_assets/alert/css/sweetalert.css') ?>">
 <script type="text/javascript" src="<?php echo base_url('_assets/ckeditor/ckeditor.js') ?>"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -103,10 +104,12 @@
         <li><a href="#"><i class="fa fa-dashboard"></i> <?php echo $judul ?></a></li>
         <li class="active"><?php echo $subjudul ?></li>
       </ol>
+      <?php echo validation_errors('<div class="error">', '</div>') ?>
     </section>
 
     <!-- Main content -->
     <section class="content">
+      
       <?php 
         $this->load->view('adminn/_partials/Content.php');
       ?>
@@ -302,6 +305,45 @@
 				$('[name="delete_id"]').val(package_id);
 			});
 		});
-	</script>
+  </script>
+
+
+    <?php 
+        if ($this->session->flashdata('berhasil')) { ?>
+            <script type='text/javascript'>
+                setTimeout(function () { 
+                    swal({
+                        title: 'Berhasil',
+                        text:  '<?php echo $this->session->flashdata('berhasil'); ?>',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });		
+                },10);	
+            </script>";
+
+    <?php    }
+    ?>
+    <?php 
+        if ($this->session->flashdata('gagal')) { ?>
+            <script type='text/javascript'>
+                setTimeout(function () { 
+                    swal({
+                        title: 'Gagal',
+                        text:  '<?php echo $this->session->flashdata('gagal'); ?>',
+                        type: 'warning',
+                        timer: 1500,
+                        showConfirmButton: false
+                    });		
+                },10);	
+            </script>";
+
+    <?php    }
+    ?>
+  
+
+  
+  <script src="<?php echo base_url('_assets/alert/js/sweetalert.min.js') ?>"></script>
+  <script src="<?php echo base_url('_assets/alert/js/qunit-1.18.0.js') ?>"></script>
 </body>
 </html>

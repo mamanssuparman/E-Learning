@@ -7,6 +7,7 @@ function __construct(){
 		$this->load->model('Mdl_admin');
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
+		$this->load->library('form_validation');
 		$this->load->helper('cookie');
 		//$this->load->libraries('session');
 	}
@@ -34,9 +35,12 @@ function __construct(){
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$username 		=$this->input->post('username', TRUE);
 		$get_data_siswa =$this->Mdl_admin->get_cari_siswa($username);
-
-		if ($get_data_siswa->num_rows()>0) {
-			$this->session->set_flashdata('berhasil','Data Username '.$username.' sudah tersedia');
+		$this->form_validation->set_rules('nama','nama','required');
+		$this->form_validation->set_rules('password','password','required');
+		$this->form_validation->set_rules('Kelas','Kelas','required');
+		$this->form_validation->set_rules('username','username','required|is_unique[tbl_user.username]');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','NIS / Username siswa sudah ada.');
 			redirect('adminn/Siswa/');
 		}
 		else{
@@ -44,6 +48,13 @@ function __construct(){
 			$this->session->set_flashdata('berhasil','Data Username '.$username.' sudah tersimpan');
 			redirect('adminn/Siswa/');
 		}
+		// if ($get_data_siswa->num_rows()>0) {
+		// 	$this->session->set_flashdata('berhasil','Data Username '.$username.' sudah tersedia');
+		// 	redirect('adminn/Siswa/');
+		// }
+		// else{
+			
+		// }
 		
 	}
 	public function Update()
