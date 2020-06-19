@@ -25,10 +25,10 @@
 						<td><?php echo $showmatpel['deskripsi'] ;?></td>
 						<td><?php echo $showmatpel['jumlah_materi'];?></td>
 						<td>
-						<a href="<?php echo base_url();?>index.php/adminn/Mat_pel/edit/<?php echo $showmatpel['id_mapel'];?>" class="btn btn-info btn-xs" title="Edit Mapel" ><li class="fa fa-edit"></li></a>
+						<a href="<?php echo base_url();?>index.php/admin/Mat_pel/Updater/<?php echo $showmatpel['id_mapel'];?>" class="btn btn-info btn-xs" title="Edit Mapel" ><li class="fa fa-edit"></li></a>
 						<a href="#" class="btn btn-danger btn-xs" title="Hapus Mapel" data-toggle="modal" data-target="#modal-hapus-<?php echo $showmatpel['id_mapel'];?>"><li class="fa fa-times"></li> </a>
-						<a href="<?php echo base_url();?>index.php/adminn/Materi/Add/<?php echo $showmatpel['id_mapel'];?>"><button class="btn btn-xs btn-warning" title="Buat Materi"><li class="fa fa-book"></li></button></a>
-						<a href="<?php echo base_url();?>index.php/adminn/Materi/list_materi_mapel/<?php echo $showmatpel['id_mapel'];?>" class='btn btn-success btn-xs' title="Lihat Detail Materi" ><li class="fa fa-search"></li> </a>
+						<a href="<?php echo base_url();?>index.php/admin/Materi/Add/<?php echo $showmatpel['id_mapel'];?>"><button class="btn btn-xs btn-warning" title="Buat Materi"><li class="fa fa-book"></li></button></a>
+						<a href="<?php echo base_url();?>index.php/admin/Materi/List_Materi/<?php echo $showmatpel['id_mapel'];?>" class='btn btn-success btn-xs' title="Lihat Detail Materi" ><li class="fa fa-search"></li> </a>
 						</td>
 					</tr>	
 				<?php	endforeach;	
@@ -46,7 +46,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Mat_pel/Add/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Mat_pel/Simpan">
 	    <div class="modal-body">
 	      <p>
 	      	Nama Mapel
@@ -131,12 +131,12 @@
 	<div class="modal-dialog">
 	  <div class="modal-content">
 	    <div class="modal-header">
-	      <h4 class="modal-title">Tambah Materi Pelajaran</h4>
+	      <h4 class="modal-title">Hapus Data Materi Pelajaran</h4>
 	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Mat_pel/Delete/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Mat_pel/Hapus">
 	    <div class="modal-body">
 	    	<input type="hidden" name="id_mapel" value="<?php echo $showmatpel['id_mapel'];?>">
 	     <p>

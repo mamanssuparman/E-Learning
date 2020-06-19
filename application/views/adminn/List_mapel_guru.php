@@ -2,7 +2,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<a href="<?php echo base_url();?>index.php/adminn/Guru/"><button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add Guru Pengajar</button></a>
+		<a href="<?php echo base_url();?>index.php/admin/Guru"><button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add Guru Pengajar</button></a>
 	</div>
 </div>
 <hr>
@@ -51,7 +51,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/List_mapel_guru/Add/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/List_mapel_guru/Simpan">
 	    <div class="modal-body">
 	    	<input type="hidden" name="id_group" value="<?php echo $showmapelgroup['id_group'] ?>">
 	      <p>

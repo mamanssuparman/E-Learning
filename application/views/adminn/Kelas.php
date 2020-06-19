@@ -48,7 +48,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="post" action="<?php echo base_url();?>index.php/adminn/Kelas/Add/">
+	    <form method="post" action="<?php echo base_url();?>index.php/admin/Kelas/Simpan">
 	    <div class="modal-body">
 	      <p>
 	      	Nama Kelas
@@ -89,7 +89,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="post" action="<?php echo base_url();?>index.php/adminn/Kelas/Update/">
+	    <form method="post" action="<?php echo base_url();?>index.php/admin/Kelas/Perbaharui">
 	    <div class="modal-body">
 	    	<p>
 	    		<input type="hidden" name="id_kelas" value="<?php echo $show->id_kelas ?>">
@@ -126,7 +126,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="post" action="<?php echo base_url();?>index.php/adminn/Kelas/Delete/">
+	    <form method="post" action="<?php echo base_url();?>index.php/admin/Kelas/Hapus">
 	    <div class="modal-body">
 	    	<p>
 	    		<input type="hidden" name="id_kelas" value="<?php echo $show->id_kelas ?>">

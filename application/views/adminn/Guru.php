@@ -46,13 +46,14 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Guru/Add/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Guru/Simpan">
 	    <div class="modal-body">
 	      <p>
 	      	Username
 	      </p>
 	      <p>
-	      	<input type="text" name="unsername" class="form-control">
+	      	<input type="text" name="unsername" class="form-control" maxlength="8">
+				<p><i>* Panjang Maksimal 8 karakter<i></p>
 	      </p>
 	      <p>
 	      	Nama
@@ -64,7 +65,8 @@
 	      	Password
 	      </p>
 	      <p>
-	      	<input type="password" name="panserword" class="form form-control">
+			<input type="password" name="panserword" class="form form-control" maxlength="8">
+			<p><i>* Panjang Maksimal 8 karakter</i></p>  
 	      </p>
 	      <p>
 	      	TTTL
@@ -98,20 +100,15 @@
 	<div class="modal-dialog">
 	  <div class="modal-content">
 	    <div class="modal-header">
-	      <h4 class="modal-title">Tambah Guru Pengajar</h4>
+	      <h4 class="modal-title">Ubah Guru Pengajar</h4>
 	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Guru/Edit/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Guru/Perbaharui">
 	    <div class="modal-body">
 			<input type="hidden" name="id_guru" value="<?php echo $showguru['id_guru'];?>">
-	      <p>
-	      	Username
-	      </p>
-	      <p>
-	      	<input type="text" name="unsername" class="form-control" value="<?php echo $showguru['unsername'] ?>" required>
-	      </p>
+	      
 	      <p>
 	      	Nama
 	      </p>
@@ -122,7 +119,9 @@
 	      	Password
 	      </p>
 	      <p>
-	      	<input type="password" name="panserword" class="form form-control">
+			<input type="password" name="panserword" class="form form-control" maxlength="8">
+			<p> <i>* Panjang Maksimal 8 karakter</i> </p>
+			<p> <i>Jika Password tidak ingin dirubah, maka kosongkan saja.</i> </p>
 	      </p>
 	      <p>
 	      	TTTL

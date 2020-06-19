@@ -8,7 +8,7 @@
 			case 'Add':
 				$this->load->view('adminn/_materi_add.php');
 				break;
-			case 'list_materi_mapel':
+			case 'List_Materi':
 				$this->load->view('adminn/_materi_list_materi_mapel.php');
 				break;
 			default:

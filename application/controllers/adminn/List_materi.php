@@ -35,6 +35,12 @@ function __construct(){
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$id_materi 	=$this->input->post('id_materi',TRUE);
+		$this->form_validation->set_rules('id_materi','id_materi','required|htmlspecialchars');
+		$this->form_validation->set_rules('detail_materi','detail_materi','required');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Maaf, data List Materi Gagal di perbaharui.!!');
+			redirect('admin/List_materi');
+		}
 		$this->Mdl_admin->Update_materi($id_materi);
 		$this->session->set_flashdata('berhasil','Data materi berhasil di perbaharui.!!');
 		redirect('adminn/List_materi/');
@@ -46,9 +52,17 @@ function __construct(){
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$id_materi 	=$this->input->post('id_materi',TRUE);
-		$this->Mdl_admin->Delete_materi($id_materi);
-		$this->session->set_flashdata('berhasil','Data Materi berhasil di hapus.!!');
-		redirect('adminn/List_materi/');
+		$this->form_validation->set_rules('id_materi','id_materi','required|htmlspecialchars');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Maaf, data list materi gagal dihapus.!');
+			redirect('admin/List_materi');
+		}
+		else{
+			$this->Mdl_admin->Delete_materi($id_materi);
+			$this->session->set_flashdata('berhasil','Data Materi berhasil di hapus.!!');
+			redirect('admin/List_materi');
+		}
+		
 	}
 	public function Detail()
 	{

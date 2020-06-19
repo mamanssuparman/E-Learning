@@ -51,7 +51,7 @@ class Mdl_admin extends CI_Model {
 	{
 		$id_kelas 		=$this->input->post('Kelas',TRUE);
 		$username 		=$this->input->post('username',TRUE);
-		$password1 		=md5($this->input->post('password',TRUE));
+		$password1 		=password_hash($this->input->post('password',TRUE),PASSWORD_DEFAULT);
 		$password2 		=$this->input->post('password',TRUE);
 		$nama_siswa 	=$this->input->post('nama',TRUE);
 		$data=array(
@@ -65,7 +65,7 @@ class Mdl_admin extends CI_Model {
 	}
 	public function Update_siswa($id_user)
 	{
-		$password1		=md5($this->input->post('password',TRUE));
+		$password1		=password_hash($this->input->post('password',TRUE),PASSWORD_DEFAULT);
 		$password2 		=$this->input->post('password', TRUE);
 		$nama_siswa 	=$this->input->post('nama', TRUE);
 		$id_kelas 		=$this->input->post('Kelas', TRUE);
@@ -77,7 +77,7 @@ class Mdl_admin extends CI_Model {
 		);
 		$this->db->set($data);
 		$this->db->where('id_user',$id_user);
-		$this->dba->update('tbl_user');
+		$this->db->update('tbl_user');
 		
 	}
 	public function Delete_siswa($id_user)
@@ -352,7 +352,7 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	{
 		$nama 			=$this->input->post('nama', TRUE);
 		$username 		=$this->input->post('unsername', TRUE);
-		$panserword 	=md5($this->input->post('panserword', TRUE));
+		$panserword 	=password_hash($this->input->post('panserword', TRUE),PASSWORD_DEFAULT);
 		$tempat_lahir 	=$this->input->post('tempat_lahir',TRUE);
 		$tgl_lahir 		=$this->input->post('tgl_lahir', TRUE);
 		$data=array(
@@ -483,7 +483,7 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$nama 			=$this->input->post('nama',TRUE);
 		$tempat_lahir 	=$this->input->post('tempat_lahir',TRUE);
 		$tgl_lahir 		=$this->input->post('tgl_lahir',TRUE);
-		$password 		=md5($this->input->post('panserword',TRUE));
+		$password 		=password_hash($this->input->post('panserword',TRUE),PASSWORD_DEFAULT);
 		$data=array(
 			'nama' 			=>$nama,
 			'tempat_lahir'	=>$tempat_lahir,

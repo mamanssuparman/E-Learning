@@ -49,7 +49,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Siswa/Add/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Siswa/Simpan">
 	    <div class="modal-body">
 	      <p>
 	      	Nama Siswa
@@ -107,7 +107,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Siswa/Update/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Siswa/Perbaharui">
 	    <div class="modal-body">
 	    	<p>
 	    		<input type="hidden" name="id_user" value="<?php echo $show->id_user ;?>">
@@ -171,7 +171,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Siswa/Delete/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Siswa/Hapus">
 	    <div class="modal-body">
 	    	<p>
 	    		<input type="hidden" name="id_user" value="<?php echo $show->id_user ;?>">

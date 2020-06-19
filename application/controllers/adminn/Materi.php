@@ -73,13 +73,13 @@ function __construct(){
 		$this->form_validation->set_rules('detail_materi','detail_materi','required|htmlspecialchars');
 		if ($this->form_validation->run()== FALSE) {
 			$this->session->set_flashdata('gagal','Data Materi Gagal di Simpan.!, Periksa kembali Inputan.!');
-			redirect("adminn/Materi/list_materi_mapel/$id_mapel");
+			redirect("admin/Materi/Add/$id_mapel");
 		}
 		else{
 			$this->Mdl_admin->Save_materi($id_mapel);
 			$this->session->set_flashdata('berhasil','Data Materi berhasil di simpan.!!');
 			//redirect('adminn/Dashboard/');
-			redirect("adminn/Materi/list_materi_mapel/$id_mapel");
+			redirect("admin/Materi/Add/$id_mapel");
 		}
 		
 	}
@@ -107,8 +107,13 @@ function __construct(){
 	}
 	public function Delete($id_mapel=null,$id_materi=null)
 	{
+		$this->form_validation->set_rules('id_tapel','id_tapel','required');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Maaf, data Materi gagal di hapus.!');
+			redirect("admin/Materi/List_Materi/$id_materi");
+		}
 		$this->Mdl_admin->Delete_materi_mapel($id_mapel);
 		$this->session->set_flashdata('berhasil','Data Materi Pelajaran Berhasil Di Hapus.');
-		redirect("adminn/Materi/list_materi_mapel/$id_materi");
+		redirect("admin/Materi/List_Materi/$id_materi");
 	}
 }

@@ -3,7 +3,7 @@
 <?php 
 	$uri=$this->uri->segment(3);
 	switch ($uri) {
-		case 'edit':
+		case 'Updater':
 			$this->load->view('adminn/_Mat_pel_edit.php');
 			break;
 		default:

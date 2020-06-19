@@ -11,7 +11,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<a href="<?php echo base_url();?>index.php/adminn/Materi/Add/<?php echo $this->uri->segment(4);?>" class="btn btn-info pull-right"><li class="fa fa-plus"></li> Tambah Materi</a>
+		<a href="<?php echo base_url();?>index.php/admin/Materi/Add/<?php echo $this->uri->segment(4);?>" class="btn btn-info pull-right"><li class="fa fa-plus"></li> Tambah Materi</a>
 	</div>
 </div>
 <hr>
@@ -62,7 +62,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="post" action="<?php echo base_url();?>index.php/adminn/Materi/Delete/<?php echo $showmaterimapel['id_materi'] ?>/<?php echo $this->uri->segment(4);?>">
+	    <form method="post" action="<?php echo base_url();?>index.php/admin/Materi/Hapus/<?php echo $showmaterimapel['id_materi'] ?>/<?php echo $this->uri->segment(4);?>">
 	    <div class="modal-body">
 	    	<input type="hidden" name="id_tapel" value="<?php echo $showmaterimapel['id_materi'] ?>">
 	      <p>

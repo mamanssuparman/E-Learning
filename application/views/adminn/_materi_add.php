@@ -4,8 +4,7 @@
 ?>
 </h3>
 <hr>
-<form method="POST" action="<?php echo base_url();?>index.php/adminn/Materi/Save/<?php echo $id_mapel ?>">
-	
+<form method="POST" action="<?php echo base_url();?>index.php/admin/Materi/Simpan/<?php echo $id_mapel ?>">
 	<p>
 		Judul Materi
 	</p>

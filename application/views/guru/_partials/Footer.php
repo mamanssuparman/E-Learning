@@ -5,3 +5,6 @@ All rights reserved.
   <b>Version</b> 3.0.3-pre
 </div>
 </footer>
+<?php 
+
+?>

@@ -44,7 +44,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/List_materi/Update/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/List_materi/Perbaharui">
 	    <div class="modal-body">
 	    	<input type="hidden" name="id_materi" value="<?php echo $showmateri['id_materi'];?>">
 	      <p>
@@ -89,7 +89,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/List_materi/Delete/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/List_materi/Hapus">
 	    <div class="modal-body">
 	    	<input type="hidden" name="id_materi" value="<?php echo $showmateri['id_materi'];?>">
 	      <p>

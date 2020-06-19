@@ -42,7 +42,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="post" action="<?php echo base_url();?>index.php/adminn/Tahun_pelajaran/Add/">
+	    <form method="post" action="<?php echo base_url();?>index.php/admin/Tahun_pelajaran/Simpan">
 	    <div class="modal-body">
 	      <p>
 	      	Nama Tahun Pelajaran
@@ -74,7 +74,7 @@ foreach ($data_tapel->result_array() as $showtapel):
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="post" action="<?php echo base_url();?>index.php/adminn/Tahun_pelajaran/Delete/">
+	    <form method="post" action="<?php echo base_url();?>index.php/admin/Tahun_pelajaran/Hapus">
 	    <div class="modal-body">
 	    	<input type="hidden" name="id_tapel" value="<?php echo $showtapel['id_tapel'] ?>">
 	      <p>

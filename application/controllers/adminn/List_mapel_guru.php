@@ -7,6 +7,7 @@ function __construct(){
 		$this->load->model('Mdl_admin');
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
+		$this->load->library('form_validation');
 		$this->load->helper('cookie');
 		//$this->load->libraries('session');
 	}
@@ -35,8 +36,17 @@ function __construct(){
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$this->Mdl_admin->add_update_mapel_guru();
-		$this->session->set_flashdata('berhasil','Data Guru berhasil di tambahkan.');
-		redirect('adminn/List_mapel_guru/');
+		$this->form_validation->set_rules('id_group','id_group','required|htmlspecialchars');
+		$this->form_validation->set_rules('id_guru','id_guru','required');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Maaf, Data List Mapel Guru gagal di tambahkan.!');
+			redirect('admin/List_mapel_guru');
+		}
+		else{
+			$this->Mdl_admin->add_update_mapel_guru();
+			$this->session->set_flashdata('berhasil','Data Guru berhasil di tambahkan.');
+			redirect('admin/List_mapel_guru');
+		}
+		
 	}
 }

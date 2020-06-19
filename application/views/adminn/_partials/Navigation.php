@@ -34,7 +34,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Tahun_pelajaran/"><i class="fa fa-circle-o"></i> Tahun Pelajaran</a></li> 
+        <a href="<?php echo base_url();?>index.php/admin/Tahun_pelajaran"><i class="fa fa-circle-o"></i> Tahun Pelajaran</a></li> 
         <li
         <?php 
           if ($subjudul='Kelas') {
@@ -44,7 +44,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Kelas/"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/Kelas"><i class="fa fa-circle-o"></i> Data Kelas</a></li>
         <li
         <?php 
           if ($subjudul='Data Siswa') {
@@ -54,7 +54,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Siswa/"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/Siswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
       </ul>
     </li>
 <!-- End Menu Siswa -->
@@ -85,7 +85,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Mat_pel/"><i class="fa fa-circle-o"></i> Materi Pelajaran</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/Mat_pel"><i class="fa fa-circle-o"></i> Materi Pelajaran</a></li>
         <li
         <?php 
           if ($subjudul='Guru Pengajar') {
@@ -95,7 +95,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Guru/"><i class="fa fa-circle-o"></i> Guru Pengajar</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/Guru"><i class="fa fa-circle-o"></i> Guru Pengajar</a></li>
         <li
         <?php 
           if ($subjudul='List Mapel Guru') {
@@ -105,7 +105,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/List_mapel_guru/"><i class="fa fa-circle-o"></i> List Mapel Guru</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/List_mapel_guru/"><i class="fa fa-circle-o"></i> List Mapel Guru</a></li>
         <li
         <?php 
           if ($subjudul='Daftar List Materi') {
@@ -115,7 +115,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/List_materi/"><i class="fa fa-circle-o"></i> List Materi</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/List_materi/"><i class="fa fa-circle-o"></i> List Materi</a></li>
       </ul>
     </li>
 <!-- End Menu Guru -->
@@ -146,7 +146,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Topik_soal/"><i class="fa fa-circle-o"></i> Topik Soal</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/Topik_soal"><i class="fa fa-circle-o"></i> Topik Soal</a></li>
         <li
         <?php 
           if ($subjudul='Daftar Soal') {

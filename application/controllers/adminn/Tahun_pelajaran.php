@@ -35,12 +35,12 @@ function __construct(){
 		$this->form_validation->set_rules('nama_tapel','nama_tapel','required|is_unique[tbl_tapel.nama_tapel]|htmlspecialchars');
 		if ($this->form_validation->run()== FALSE) {
 			$this->session->set_flashdata('gagal','Data tahun pelajaran tidak boleh sama.!');
-			redirect('adminn/Tahun_pelajaran/');
+			redirect('admin/Tahun_pelajaran');
 		}
 		else{
 			$this->Mdl_admin->save_tapel();
 			$this->session->set_flashdata('berhasil','Data Tahun Pelajaran Berhasil Di Simpan');
-			redirect('adminn/Tahun_pelajaran/');
+			redirect('admin/Tahun_pelajaran');
 		}
 		
 	}
@@ -56,11 +56,11 @@ function __construct(){
 		$this->db->trans_complete();
 		if ($this->db->trans_status()===1) {
 			$this->session->set_flashdata('gagal','Data Tahun Pelajaran tidak bisa di hapus.!!');
-			redirect('adminn/Tahun_pelajaran/');
+			redirect('admin/Tahun_pelajaran');
 		}
 		else{
 			$this->session->set_flashdata('berhasil','Data Tahun Pelajaran berhasil di hapus.!');
-			redirect('adminn/Tahun_pelajaran/');	
+			redirect('admin/Tahun_pelajaran');	
 		}
 	}
 }
