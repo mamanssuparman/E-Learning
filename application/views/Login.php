@@ -69,12 +69,21 @@
                   </div>
                   <div class="col-sm-6">
                     <div class="description-block">
-                     <form method="POST" action="<?php echo base_url();?>index.php/Login_user/Cek_user/">
+                     <form method="POST" action="<?=base_url('Login_user');?>">
+                      <?php if ($this->session->flashdata('eror')): ?>
+                        <p>
+                          <div class="alert alert-danger alert-dismissible">
+                            <?=$this->session->flashdata('eror');?>  
+                          </div>
+                        </p>    
+                      <?php endif ?>  
                      <p>
-                       <input type="text" name="username" class="form-control" placeholder="Username" required>
+                       <input type="text" name="username" class="form-control" placeholder="Username">
+                       <?=form_error('username','<small style="margin-left:-80px" class="text-danger">','</small>')?>
                      </p>
                      <p>
-                       <input type="password" name="password" class="form-control" placeholder="Password" required>
+                       <input type="password" name="password" class="form-control" placeholder="Password">
+                       <?=form_error('password','<small style="margin-left:-80px" class="text-danger">','</small>')?>
                      </p>
                      <p>
                       <input type="submit" name="submit" class="btn btn-primary btn-md pull-right" value="Login">
@@ -164,5 +173,17 @@
 <script src="<?php echo base_url('_assets/dist/js/adminlte.min.js') ?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('_assets/dist/js/demo.js') ?>"></script>
+<script>
+$(function() {
+    notifikasi();
+});
+
+var notifikasi = (e) => {
+  var alertNya = $('.alert');
+    setTimeout(function() {
+        alertNya.slideUp('slow');
+    }, 2000);
+}
+</script>
 </body>
 </html>

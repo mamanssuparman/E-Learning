@@ -20,7 +20,7 @@
             <li class="divider"></li>
             <li><a href="#">Forum Diskusi Kelas</a></li>
             <li class="divider"></li>
-            <li><a href="<?php echo base_url(); ?>index.php/user/Profile/">Profile</a></li>
+            <li><a href="<?php echo base_url(); ?>user/Profile/">Profile</a></li>
           </ul>
         </li>
       </ul>
@@ -49,11 +49,7 @@
             <img src="<?php echo base_url('_assets/default.jpg') ?>" class="user-image" alt="User Image">
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
             <span class="hidden-xs">
-              <?php 
-                foreach ($data_siswa->result() as $showsiswa) {
-                  echo $showsiswa->nama_siswa;
-                }
-              ?>
+              <?=$siswa['nama_siswa']?>
 
             </span>
           </a>
@@ -63,22 +59,18 @@
               <img src="<?php echo base_url('_assets/default.jpg') ?>" class="img-circle" alt="User Image">
 
               <p>
-                <?php 
-                  foreach ($data_siswa->result() as $showsiswa) {
-                    echo $showsiswa->nama_siswa;
-                    echo '<small>'.$showsiswa->nama_kelas.'</small>';
-                  }
-                ?>
+               <?=$siswa['nama_siswa']?>
+                <small><?=$kelas['nama_kelas']?></small>
               </p>
             </li>
             <!-- Menu Body -->
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <a href="<?php echo base_url(); ?>user/Profile/" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
-                <a href="<?php echo base_url();?>index.php/Login_user/Log_out/" class="btn btn-default btn-flat">Sign out</a>
+                <a href="<?php echo base_url();?>Login_user/Log_out" class="btn keluar btn-default btn-flat">Keluar</a>
               </div>
             </li>
           </ul>

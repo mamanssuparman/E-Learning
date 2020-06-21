@@ -95,3 +95,5 @@ $route['admin/Topik_soal']                  ='adminn/Topik_soal';
 $route['admin/Topik_soal/Simpan']           ='adminn/Topik_soal/Add';
 $route['admin/Topik_soal/Perbaharui']       ='adminn/Topik_soal/Update';
 $route['admin/Topik_soal/Hapus']            ='adminn/Topik_soal/Delete';
+$route['admin'] = 'adminn';
+$route['user'] = 'user/welcome';

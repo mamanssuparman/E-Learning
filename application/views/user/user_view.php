@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Top Navigation</title>
+  <title>E-Learning | <?=$title?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -18,7 +18,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url('_assets/dist/css/skins/_all-skins.min.css') ?>">
-
+ <link rel="stylesheet" href="<?=base_url('_assets/')?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -26,6 +26,26 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+
+<!-- jQuery 3 -->
+<script src="<?php echo base_url('_assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="<?php echo base_url('_assets/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+<script src="<?php echo base_url('_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
+<script src="<?php echo base_url('_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>"></script>
+<!-- SlimScroll -->
+<script src="<?php echo base_url('_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
+<!-- FastClick -->
+<script src="<?php echo base_url('_assets/bower_components/fastclick/lib/fastclick.js') ?>"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url('_assets/dist/js/adminlte.min.js') ?>"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url('_assets/dist/js/demo.js') ?>"></script>
+<!-- SweetAlert2 -->
+<script src="<?=base_url('_assets/')?>plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?=base_url('_assets/')?>plugins/toastr/toastr.min.js"></script>
+<script src="https://js.pusher.com/4.4/pusher.min.js"></script>
   <!-- Google Font -->
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
@@ -33,9 +53,7 @@
 <div class="wrapper">
 
   <header class="main-header">
-      <?php 
-        $this->load->view('user/_partials/Navigation.php');
-      ?>
+      <?=$navigation?>
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
@@ -52,34 +70,10 @@
           <li class="active">Top Navigation</li>
         </ol>
       </section>
+      <section class="content">
+        <?=$content;?>
+      </section>
     </div>
-    <section class="content">
-      <div class="box box-primary">
-        <div class="box-body">
-              <?php 
-                $uri2 =$this->uri->segment(2);
-                switch ($uri2) {
-                  case 'Materi':
-                    $this->load->view('user/Materi.php');
-                    break;
-                  case 'Diskusi':
-                    $this->load->view('user/Diskusi.php');
-                    break;
-                  case 'Profile':
-                    $this->load->view('user/Profil.php');
-                    break;
-                  case 'Quiz':
-                    $this->load->view('user/Quiz.php');
-                    break;
-                  default:
-                    $this->load->view('user/Menu_utama.php');
-                    break;
-                }
-              ?>        
-        </div>
-      <!-- Main content -->
-      </div>
-    </section>
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -95,21 +89,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery 3 -->
-<script src="<?php echo base_url('_assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url('_assets/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
-<script src="<?php echo base_url('_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
-<script src="<?php echo base_url('_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>"></script>
-<!-- SlimScroll -->
-<script src="<?php echo base_url('_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
-<!-- FastClick -->
-<script src="<?php echo base_url('_assets/bower_components/fastclick/lib/fastclick.js') ?>"></script>
-<!-- AdminLTE App -->
-<script src="<?php echo base_url('_assets/dist/js/adminlte.min.js') ?>"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url('_assets/dist/js/demo.js') ?>"></script>
-<script>
+  <script>
   $(function () {
     $('#example1').DataTable()
     $('#example2').DataTable({
@@ -119,6 +99,23 @@
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : false
+    })
+  })
+  $(".keluar").on('click',function(e) {
+    e.preventDefault();
+    const href = $(this).attr('href')
+    Swal.fire({
+      title : 'Apakah anda yakin keluar?',
+      type  : 'warning',
+      showCancelButton : true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Keluar',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+        document.location.href = href;
+      }
     })
   })
 </script>

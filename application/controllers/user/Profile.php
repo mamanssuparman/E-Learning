@@ -4,18 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Profile extends CI_Controller {
 function __construct(){
 		parent:: __construct();
-		$this->load->model('Mdl_Cek');
-		$this->load->model('Mdl_user');
-		$this->load->library('session');
-		$this->load->helper('cookie');
-		//$this->load->libraries('session');
+		if (!$this->session->userdata('id_siswa')) {
+			redirect('','refresh');
+		}
 	}
-	public function index($id_user=null)
+	public function index()
 	{
-		// $this->Mdl_Cek->get_sequrity();
-		$username 	=$this->session->userdata('username');
-		$data['data_siswa']		=$this->Mdl_user->get_data_siswa($username);
-		$data['data_siswa'] 		=$this->Mdl_user->get_data_siswa($username);
-		$this->load->view('user/user_view.php',$data);
+		$data = array(
+			'siswa' => $this->mc->ambil('tbl_user',['id_user' => $this->session->userdata('id_siswa')])->row_array(),
+			'kelas' => $this->mc->ambil('tbl_kelas',['id_kelas' => $this->session->userdata('kelas')])->row_array(),
+			'title' => 'Diskusi',
+		);
+		$this->elearning->user('user/Profil',$data);
 	}
 }
