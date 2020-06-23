@@ -2,30 +2,49 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Diskusi extends CI_Controller {
-function __construct(){
+	function __construct(){
 		parent:: __construct();
-		$this->load->model('Mdl_Cek');
-		$this->load->model('Mdl_user');
-		$this->load->library('session');
-		$this->load->helper('cookie');
-		//$this->load->libraries('session');
+		if (!$this->session->userdata('id_siswa')) {
+			redirect('','refresh');
+		}
 	}
-	public function index($id_kelas=null)
+	public function index()
 	{
-		// $this->Mdl_Cek->get_sequrity();
-		$username 	=$this->session->userdata('username');
-		$id_kelas 	=$this->session->userdata('kelas');
-		$data['data_siswa']		=$this->Mdl_user->get_data_siswa($username);
-		$data['data_diskusi'] 	=$this->Mdl_user->get_diskusi($id_kelas);
-
-		$this->load->view('user/user_view.php',$data);
+		$data = array(
+			'siswa' => $this->mc->ambil('tbl_user',['id_user' => $this->session->userdata('id_siswa')])->row_array(),
+			'kelas' => $this->mc->ambil('tbl_kelas',['id_kelas' => $this->session->userdata('kelas')])->row_array(),
+			'title' => 'Diskusi',
+		);
+		$this->elearning->user('user/Diskusi',$data);
 	}
-	public function send()
+	function getChat()
 	{
-		// $this->Mdl_Cek->get_sequrity();
-		$this->Mdl_user->Send_diskusi();
-		$id_kelas 	=$this->session->userdata('kelas');
-		redirect('user/Diskusi/'.$id_kelas);
-
+		$data['diskusi'] = $this->mc->ambilDiskusi()->result();
+		$res = array('view' => $this->load->view('user/isichat', $data));
+		echo json_encode($res);
+	}
+	function kirimChat()
+	{
+		$data = array(
+			'diskusi_chat' 	=> $this->input->post('diskusi_chat'),
+			'id_kelas'		=> $this->session->userdata('kelas'),
+			'id_user'		=> $this->session->userdata('id_siswa'),
+			'waktu'			=> date('Y-m-d H:i:s')
+		);
+		$this->mc->simpan('tbl_diskusi',$data);
+		require_once(APPPATH.'views/vendor/autoload.php');
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        $pusher = new Pusher\Pusher(
+            'ce5acc28a4dea6008c9c', //ganti dengan App_key pusher Anda
+            '41ffbe6dcbe188b6e6e7', //ganti dengan App_secret pusher Anda
+            '1020325', //ganti dengan App_key pusher Anda
+            $options
+        );
+ 
+        $data['message'] = 'success';
+        $pusher->trigger('my-channel', 'my-event', $data);
 	}
 }

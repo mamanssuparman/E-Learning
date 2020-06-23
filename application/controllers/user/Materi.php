@@ -4,11 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Materi extends CI_Controller {
 function __construct(){
 		parent:: __construct();
-		$this->load->model('Mdl_Cek');
-		$this->load->model('Mdl_user');
-		$this->load->library('session');
-		$this->load->helper('cookie');
-		//$this->load->libraries('session');
+		if (!$this->session->userdata('id_siswa');) {
+			redirect('','refresh');
+		}
 	}
 	public function index()
 	{
