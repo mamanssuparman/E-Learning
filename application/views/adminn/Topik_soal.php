@@ -31,7 +31,7 @@
 						<td>
 						<button class="btn btn-xs btn-success" title="Edit Topik" data-toggle="modal" data-target="#modal-edit-<?php echo $showtopik['id_topik']; ?>"><li class="fa fa-edit"></li></button>
 						<button class="btn btn-xs btn-danger" title="Hapus Topik" data-toggle="modal" data-target="#modal-hapus-<?php echo $showtopik['id_topik']; ?>"><li class="fa fa-times"></li></button>
-						<a href="<?php echo base_url();?>index.php/adminn/Soal/index/<?php echo $showtopik['id_topik'];?>"><button class="btn btn-xs btn-success" title="Tambah Soal" ><li class="fa fa-plus"></li></button></a>
+						<a href="<?php echo base_url();?>index.php/admin/Soal/index/<?php echo $showtopik['id_topik'];?>"><button class="btn btn-xs btn-success" title="Tambah Soal" ><li class="fa fa-plus"></li></button></a>
 						<a href="<?php echo base_url();?>index.php/adminn/Lihat_soal/index/<?php echo $showtopik['id_topik'];?>"><button class="btn btn-xs btn-warning" title="Lihat Soal" ><li class="fa fa-search"></li></button></a>
 						</td>
 					</tr>	
@@ -56,7 +56,7 @@
 	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Topik_soal/Simpan">
 	    <div class="modal-body">
 	      <p>
-	      	MaPel
+	      	Materi Pelajaran
 	      </p>
 	      <p>
 	      	<select name="id_mapel" class="form form-control">

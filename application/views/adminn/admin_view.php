@@ -345,5 +345,6 @@
   
   <script src="<?php echo base_url('_assets/alert/js/sweetalert.min.js') ?>"></script>
   <script src="<?php echo base_url('_assets/alert/js/qunit-1.18.0.js') ?>"></script>
+  
 </body>
 </html>

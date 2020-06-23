@@ -2,7 +2,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-	<form method="POST" action="<?php echo base_url();?>index.php/adminn/Soal/Add/">
+	<form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Simpan">
 	<div class="col-md-12">
 	<p>
 		<input type="hidden" name="id_topik" value="<?php echo $this->uri->segment(4);?>">
