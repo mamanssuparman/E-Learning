@@ -6,8 +6,20 @@
         <h3 class="profile-username text-center"><?=$siswa['nama_siswa']?></h3>
 
         <p class="text-muted text-center"><?=$kelas['nama_kelas']?></p>
-
-        <a href="#" class="btn btn-primary btn-block"><b>ganti profil</b></a>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Username</b> <a class="pull-right"><?=$siswa['username']?></a>
+          </li>
+          <li class="list-group-item">
+            <b>Tempat Lahir</b> <a class="pull-right"><?=$siswa['tempat_lahir']?></a>
+          </li>
+          <li class="list-group-item">
+            <b>Tanggal Lahir</b> <a class="pull-right"><?=$siswa['tanggal_lahir']?></a>
+          </li>
+          <li class="list-group-item">
+            <b>Jenis Kelamin</b> <a class="pull-right"><?=$siswa['jenis_kelamin']?></a>
+          </li>
+        </ul>
       </div>
       <!-- /.box-body -->
     </div>
