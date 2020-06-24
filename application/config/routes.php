@@ -48,9 +48,6 @@ $route['admin/Topik_soal/Simpan']           ='adminn/Topik_soal/Add';
 $route['admin/Topik_soal/Perbaharui']       ='adminn/Topik_soal/Update';
 $route['admin/Topik_soal/Hapus']            ='adminn/Topik_soal/Delete';
 $route['admin'] = 'adminn';
-<<<<<<< HEAD
 $route['admin/Soal/index/(:num)']           ='adminn/Soal/index/$1';
 $route['admin/Soal/Simpan']                 ='adminn/Soal/Add';
-=======
 $route['user'] = 'user/welcome';
->>>>>>> 48f84982bc927da03881358fcf102e664d9900f8
