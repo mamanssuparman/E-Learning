@@ -4,12 +4,12 @@
  */
 
 CKEDITOR.editorConfig = function(config) {
-    config.filebrowserBrowseUrl = 'http://localhost/E-Learning/_assets/kcfinder/browse.php?type=files';
-    config.filebrowserImageBrowseUrl = 'http://localhost/E-Learning/_assets/kcfinder/browse.php?type=images';
-    config.filebrowserFlashBrowseUrl = 'http://localhost/E-Learning/_assets/kcfinder/browse.php?type=flash';
-    config.filebrowserUploadUrl = 'http://localhost/E-Learning/_assets/kcfinder/upload.php?type=files';
-    config.filebrowserImageUploadUrl = 'http://localhost/E-Learning/_assets/kcfinder/upload.php?type=images';
-    config.filebrowserFlashUploadUrl = 'http://localhost/E-Learning/_assets/kcfinder/upload.php?type=flash';
+    config.filebrowserBrowseUrl = 'http://localhost/E-Learning/_assets/kcfindernew/browse.php?type=files';
+    config.filebrowserImageBrowseUrl = 'http://localhost/E-Learning/_assets/kcfindernew/browse.php?type=images';
+    config.filebrowserFlashBrowseUrl = 'http://localhost/E-Learning/_assets/kcfindernew/browse.php?type=flash';
+    config.filebrowserUploadUrl = 'http://localhost/E-Learning/_assets/kcfindernew/upload.php?type=files';
+    config.filebrowserImageUploadUrl = 'http://localhost/E-Learning/_assets/kcfindernew/upload.php?type=images';
+    config.filebrowserFlashUploadUrl = 'http://localhost/E-Learning/_assets/kcfindernew/upload.php?type=flash';
     // Define changes to default configuration here.
     // For complete reference see:
     // http://docs.ckeditor.com/#!/api/CKEDITOR.config

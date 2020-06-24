@@ -16,8 +16,8 @@ function __construct(){
 	{
 		//$kunci				=$this->uri->segment(4);
 		//$data['id_topik'] 	=$kunci;
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$data['judul'] 		="Bank Soal";
@@ -33,8 +33,8 @@ function __construct(){
 	}
 	public function Add()
 	{
-		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$kunci 	=$this->input->post('id_topik',TRUE);
