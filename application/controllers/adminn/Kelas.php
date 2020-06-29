@@ -13,10 +13,10 @@ function __construct(){
 	}
 	public function index()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$data['judul'] 		="Siswa";
 		$data['subjudul'] 	="Kelas";
 		$data['title'] 		="3-learning";
@@ -29,10 +29,10 @@ function __construct(){
 	}
 	public function Add()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('kelas','kelas','required');
 		$this->form_validation->set_rules('id_tapel','id_tapel','required');
 		if ($this->form_validation->run()== FALSE) {
@@ -48,10 +48,10 @@ function __construct(){
 	}
 	public function Update()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_kelas','id_kelas','required');
 		$this->form_validation->set_rules('kelas','kelas','required');
 		if ($this->form_validation->run()== FALSE) {
@@ -67,10 +67,10 @@ function __construct(){
 	}
 	public function Delete()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_kelas','id_kelas','required');
 		if ($this->form_validation->run()== FALSE) {
 			$this->session->set_flashdata('gagal','Data Kelas gagal di hapus.!!');

@@ -2,7 +2,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-	<form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Simpan">
+	<form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Simpan/<?php echo sha1($this->uri->segment(4)); ?>">
 	<div class="col-md-12">
 	<p>
 		<input type="hidden" name="id_topik" value="<?php echo $this->uri->segment(4);?>">
@@ -47,7 +47,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Soal/Update/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Perbaharui/<?php echo $this->uri->segment(4);?>/<?php echo sha1($showsoal['id_soal']) ;?>">
 	    <div class="modal-body">
 
 	      <p>
@@ -86,7 +86,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Soal/Delete/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Hapus/<?php echo sha1($showsoal['id_soal']) ;?>">
 	    <div class="modal-body">
 	    	<p>
 	    		Apakah anda yakin akan menghapus soal tersebut.!? 

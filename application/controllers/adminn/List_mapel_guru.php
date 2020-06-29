@@ -14,10 +14,10 @@ function __construct(){
 	public function index()
 	{
 		//$kunci				=$this->uri->segment(4);
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$data['judul'] 		="Materi";
 		$data['subjudul'] 	="List Mapel Guru";
 		$data['title'] 		="3-learning";
@@ -32,10 +32,10 @@ function __construct(){
 	}
 	public function Add()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_group','id_group','required|htmlspecialchars');
 		$this->form_validation->set_rules('id_guru','id_guru','required');
 		if ($this->form_validation->run()== FALSE) {

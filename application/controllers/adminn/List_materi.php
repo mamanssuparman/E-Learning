@@ -13,10 +13,10 @@ function __construct(){
 	public function index()
 	{
 		//$kunci				=$this->uri->segment(4);
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$data['judul'] 		="Materi";
 		$data['subjudul'] 	="Daftar List Materi";
 		$data['title'] 		="3-learning";
@@ -30,10 +30,10 @@ function __construct(){
 	}
 	public function Update()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$id_materi 	=$this->input->post('id_materi',TRUE);
 		$this->form_validation->set_rules('id_materi','id_materi','required|htmlspecialchars');
 		$this->form_validation->set_rules('detail_materi','detail_materi','required');
@@ -47,10 +47,10 @@ function __construct(){
 	}
 	public function Delete()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$id_materi 	=$this->input->post('id_materi',TRUE);
 		$this->form_validation->set_rules('id_materi','id_materi','required|htmlspecialchars');
 		if ($this->form_validation->run()== FALSE) {
@@ -66,10 +66,10 @@ function __construct(){
 	}
 	public function Detail()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$id_materi =$this->uri->segment(4);
 		$data['judul'] 		="Materi";
 		$data['subjudul'] 	="Daftar List Materi";
@@ -82,8 +82,8 @@ function __construct(){
 	}
 	public function Delete_list($id_materi=null)
 	{
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->Mdl_admin->Delete_list_materi($id_materi);
 		$this->session->set_flashdata('berhasil','Data Materi berhasil di hapus.!!');
 		redirect('adminn/List_materi/');

@@ -31,8 +31,8 @@
 						<td>
 						<button class="btn btn-xs btn-success" title="Edit Topik" data-toggle="modal" data-target="#modal-edit-<?php echo $showtopik['id_topik']; ?>"><li class="fa fa-edit"></li></button>
 						<button class="btn btn-xs btn-danger" title="Hapus Topik" data-toggle="modal" data-target="#modal-hapus-<?php echo $showtopik['id_topik']; ?>"><li class="fa fa-times"></li></button>
-						<a href="<?php echo base_url();?>index.php/admin/Soal/index/<?php echo $showtopik['id_topik'];?>"><button class="btn btn-xs btn-success" title="Tambah Soal" ><li class="fa fa-plus"></li></button></a>
-						<a href="<?php echo base_url();?>index.php/adminn/Lihat_soal/index/<?php echo $showtopik['id_topik'];?>"><button class="btn btn-xs btn-warning" title="Lihat Soal" ><li class="fa fa-search"></li></button></a>
+						<a href="<?php echo base_url();?>index.php/admin/Soal/index/<?php echo $showtopik['id_topik'];?>/<?php echo sha1($showtopik['id_topik']); ?>"><button class="btn btn-xs btn-success" title="Tambah Soal" ><li class="fa fa-plus"></li></button></a>
+						<a href="<?php echo base_url();?>index.php/admin/Lihat_soal/index/<?php echo $showtopik['id_topik'];?>/<?php echo sha1($showtopik['id_topik']); ?>"><button class="btn btn-xs btn-warning" title="Lihat Soal" ><li class="fa fa-search"></li></button></a>
 						</td>
 					</tr>	
 				<?php	endforeach;
@@ -53,7 +53,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Topik_soal/Simpan">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Topik_soal/Simpan/">
 	    <div class="modal-body">
 	      <p>
 	      	Materi Pelajaran
@@ -104,7 +104,7 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Topik_soal/Perbaharui">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Topik_soal/Perbaharui/<?php echo sha1($showtopik['id_topik']);?>">
 	    <div class="modal-body">
 	    	<p>
 	    		<input type="hidden" name="id_topik" value="<?php echo $showtopik['id_topik'];?>">
@@ -149,7 +149,7 @@ foreach ($data_topik->result_array() as $showtopik) :
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Topik_soal/Hapus">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Topik_soal/Hapus/<?php echo sha1($showtopik['id_topik']);?>">
 	    <div class="modal-body">
 	      <input type="hidden" name="id_topik" value="<?php echo $showtopik['id_topik'] ;?>">
 	      <p>

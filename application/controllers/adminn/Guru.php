@@ -13,10 +13,10 @@ function __construct(){
 	}
 	public function index()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		//$kunci				=$this->uri->segment(4);
 		$data['judul'] 		="Materi";
 		$data['subjudul'] 	="Guru Pengajar";
@@ -31,10 +31,10 @@ function __construct(){
 	}
 	public function Add()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('unsername','unsername','required|htmlspecialchars|is_unique[tbl_guru.unsername]');
 		$this->form_validation->set_rules('nama','nama','required|htmlspecialchars');
 		$this->form_validation->set_rules('panserword','panserword','required|htmlspecialchars');
@@ -53,10 +53,10 @@ function __construct(){
 	}
 	public function Edit()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_guru','id_guru','required');
 		// $this->form_validation->set_rules('unsername','unsername','required');
 		$this->form_validation->set_rules('nama','nama','required');

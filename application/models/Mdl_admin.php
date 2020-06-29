@@ -147,11 +147,18 @@ class Mdl_admin extends CI_Model {
 	}
 	public function Save_jawaban()
 	{
-		$id_soal 		=$_POST['id_soal'];
-		$jawaban 		=$_POST['jawaban'];
-		$status_jawaban =$_POST['status_jawaban'];
-		$eksekusi 		=$this->db->query("insert into tbl_jawaban(id_soal,jawaban,status_jawaban)values('$id_soal','$jawaban','$status_jawaban')");
-		return $eksekusi;
+		$id_soal 		= $this->input->post('id_soal',TRUE);
+		$jawaban 		= $this->input->post('jawaban',TRUE);
+		$status_jawaban = $this->input->post('status_jawaban',TRUE);
+		$data=array(
+			'id_soal'	=>$id_soal,
+			'jawaban' 	=>$jawaban,
+			'status_jawaban'	=>$status_jawaban
+		);
+		$this->db->insert('tbl_jawaban',$data);
+
+		// $eksekusi 		=$this->db->query("insert into tbl_jawaban(id_soal,jawaban,status_jawaban)values('$id_soal','$jawaban','$status_jawaban')");
+		// return $eksekusi;
 	}
 	public function get_data_soal_topik($kunci)
 	{
@@ -163,11 +170,14 @@ class Mdl_admin extends CI_Model {
 		$eksekusi 		=$this->db->query("SELECT tbl_soal.id_soal,tbl_soal.soal,tbl_soal.soal_audio, COUNT(tbl_jawaban.id_soal) as jumlah_jawaban, tbl_soal.id_topik from tbl_soal left outer join tbl_jawaban on tbl_soal.id_soal=tbl_jawaban.id_soal where tbl_soal.id_topik='$kunci' GROUP BY(tbl_soal.id_soal)");
 		return $eksekusi;
 	}
-	public function Update_soal($kunci)
+	public function Update_soal($kunci,$soal)
 	{
-		$soal 		=$this->input->post('soal', TRUE);
-		$eksekusi 	=$this->db->query("update tbl_soal set soal='$soal' where id_soal='$kunci'");
-		return $eksekusi;
+		$field=array(
+			'soal' 	=>$soal
+		);
+		$this->db->set($field);
+		$this->db->where('id_soal',$kunci);
+		$this->db->update('tbl_soal');
 	}
 	public function get_data_mat_pel()
 	{
@@ -451,9 +461,9 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$eksekusi 	=$this->db->query("SELECT tbl_diskusi.*, tbl_user.nama_siswa, tbl_kelas.*, tbl_guru.id_guru, tbl_guru.nama from tbl_diskusi left outer join tbl_user on tbl_diskusi.id_user=tbl_user.id_user left outer join tbl_kelas on tbl_diskusi.id_kelas= tbl_kelas.id_kelas left outer join tbl_guru on tbl_diskusi.id_guru=tbl_guru.id_guru where tbl_diskusi.id_kelas='$id_kelas'");
 		return $eksekusi;
 	}
-	public function get_data_pengguna($id_pengguna)
+	public function get_data_pengguna()
 	{
-		return $this->db->get_where('tbl_guru',array('unsername'=>$id_pengguna));
+		return $this->db->get_where('tbl_guru',array('unsername'=>$this->session->userdata('userguru')));
 		// $eksekusi 	=$this->db->query("select * from tbl_guru where unsername='$id_pengguna'");
 		// return $eksekusi;
 	}
@@ -566,5 +576,23 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	{
 		$this->db->where('id_materi',$id_materi);
 		$this->db->delete('tbl_materi');
+	}
+	public function Update_Jawaban()
+	{
+		$id_jawaban	=$this->input->post('array',TRUE);
+		$jawaban 	=$this->input->post('jawaban',TRUE);
+		$status_jawaban	=$this->input->post('status_jawaban',TRUE);
+		$data=array(
+			'jawaban' 		=>$jawaban,
+			'status_jawaban'=>$status_jawaban
+		);
+		$this->db->set($data);
+		$this->db->where('id_jawaban',$id_jawaban);
+		$this->db->update('tbl_jawaban');
+	}
+	public function Delete_Jawaban($idjawaban)
+	{
+		$this->db->where('id_jawaban',$idjawaban);
+		$this->db->delete('tbl_jawaban');
 	}
 }

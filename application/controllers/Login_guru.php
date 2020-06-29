@@ -11,49 +11,44 @@ function __construct(){
 	}
 	public function Cek_user()
 	{	
-		// $username 		=$_POST['username'];
-		// $password 		=$_POST['password'];
-		$username 			=$this->input->post('username',TRUE);
-		// $password 			=password_hash($this->input->post('password',TRUE),PASSWORD_DEFAULT);
-		$password 			=md5($this->input->post('password','refresh'));
-		$data['query_cari_unsername'] 		=$this->Mdl_Cek->Cek_guru($username);
-		$ketemudata=$data['query_cari_unsername'];
-		if ($ketemudata->num_rows()>0) {
-				
-		}
-
-
-		if (password_verify($this->input->post('password',TRUE),$password)) {
-			$data['query_cari_unsername']	=$this->Mdl_Cek->Cek_guru($username);
-		
-			$ketemudata=$data['query_cari_unsername'];
-			if($ketemudata->num_rows()>0)
-			{
-				foreach ($ketemudata->result() as $ketemu) 
-				{
-					$sess		=array('username'		=>$ketemu->unsername,
-										'password'	=>$ketemu->panserword,
-										'level' 		=>'guru',
-										'id_user' 	=>$ketemu->id_guru);
-					$this->session->set_userdata($sess);
-					redirect('adminn/');				
-				}
-			}
-			else
-			{
-				$this->session->set_flashdata('berhasil', 'Maaf anda tidak berhasil login');
-				redirect('');
-			}
-			$this->Model_Security->get_sequrity();	
+		$this->load->library('form_validation');
+		$username 		=$this->input->post('username',TRUE);
+		$password 		=$this->input->post('password',TRUE);
+		$this->form_validation->set_rules('username','username','trim|required');
+		$this->form_validation->set_rules('password','password','trim|required');
+		$this->form_validation->set_message('required','{field} tidak boleh kosong');
+		if ($this->form_validation->run()== FALSE) {
+			redirect('Login_user','refresh');
 		}
 		else{
-			redirect('');
+			$ketemu=$this->db->get_where('tbl_guru',array('unsername' =>$username));
+			if ($ketemu->num_rows()>0) {
+				foreach ($ketemu->result_array() as $ada) {
+					if (password_verify($password,$ada['panserword'])) {
+						$sessionnya=array(
+							'nama' 			=>$ada['nama'],
+							'userguru'		=>$ada['unsername'],
+							'id_guru'		=>$ada['id_guru'],
+						);
+						$this->session->set_userdata($sessionnya);
+						redirect('admin','refresh');
+					}
+					else{
+						$this->session->set_flashdata('eror_admin','Password yang anda masukkan salah.!');
+						redirect('Login_user','refresh');
+					}
+				}
+			}
+			else{
+				$this->session->set_flashdata('eror_admin','Username dan Password tidak ditemukan.!');
+				redirect('Login_user','refresh');
+			}
 		}
 		
 	}
 	public function Log_out()
 	{
-		//$this->Mdl_sequrity->get_sequrity();
+		// $this->Mdl_sequrity->get_sequrity();
 		$this->session->sess_destroy();
 		redirect('');
 	}

@@ -116,11 +116,19 @@
                   <div class="col-sm-3">
                     
                   </div>
-                <form method="POST" action="<?php echo base_url();?>index.php/Login_guru/Cek_user/">
                   <div class="col-sm-6">
                     <div class="description-block">
+                <form method="POST" action="<?php echo base_url();?>index.php/Login_guru/Cek_user">
+                      <?php if ($this->session->flashdata('eror_admin')): ?>
+                        <p>
+                          <div class="alert alert-danger alert-dismissible">
+                            <?=$this->session->flashdata('eror_admin');?>  
+                          </div>
+                        </p>    
+                      <?php endif ?> 
                      <p>
                        <input type="text" name="username" class="form-control" placeholder="Username">
+                      <?=form_error('usernameadmin','<small style="margin-left:-80px" class="text-danger">','</small>')?>
                      </p>
                      <p>
                        <input type="password" name="password" class="form-control" placeholder="Password">

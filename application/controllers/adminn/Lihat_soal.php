@@ -13,18 +13,24 @@ function __construct(){
 	public function index()
 	{
 		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$id_topik 			=$this->uri->segment(4);
-		$data['judul'] 		="Bank Soal";
-		$data['subjudul'] 	="Topik Soal";
-		$data['title'] 		="3-learning";
-		$data['judulbesar']	="Bank Soal";
-		$data['user'] 		="";
-		$data['level'] 		="";
-		$data['data_topik'] =$this->Mdl_admin->get_data_nama_topik($id_topik);
-		$data['data_soal']	=$this->Mdl_admin->get_data_lihat_soal($id_topik);
-		$this->load->view('adminn/admin_view.php',$data);
+		$id_topik2 			=$this->uri->segment(5);
+		if (sha1($id_topik)==$id_topik2) {
+			$data['judul'] 		="Bank Soal";
+			$data['subjudul'] 	="Topik Soal";
+			$data['title'] 		="3-learning";
+			$data['judulbesar']	="Bank Soal";
+			$data['user'] 		="";
+			$data['level'] 		="";
+			$data['data_topik'] =$this->Mdl_admin->get_data_nama_topik($id_topik);
+			$data['data_soal']	=$this->Mdl_admin->get_data_lihat_soal($id_topik);
+			$this->load->view('adminn/admin_view.php',$data);	
+		}else{
+			redirect('admin/');
+		}
+		
 	}
 }

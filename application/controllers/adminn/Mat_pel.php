@@ -14,10 +14,10 @@ function __construct(){
 	public function index()
 	{
 		//$kunci				=$this->uri->segment(4);
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$data['judul'] 		="Materi";
 		$data['subjudul'] 	="Materi Pelajaran";
 		$data['title'] 		="3-learning";
@@ -33,10 +33,10 @@ function __construct(){
 	}
 	public function edit($id_mapel=null)
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$data['judul'] 		="Materi";
 		$data['subjudul'] 	="Materi Pelajaran";
 		$data['title'] 		="3-learning";
@@ -56,10 +56,10 @@ function __construct(){
 	}
 	public function Add()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 				=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 				=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('nama_mapel','nama_mapel','required|is_unique[tbl_mapel.nama_mapel]|htmlspecialchars');
 		$this->form_validation->set_rules('deskripsi','deskripsi','required|htmlspecialchars');
 		if ($this->form_validation->run()== FALSE) {
@@ -75,12 +75,12 @@ function __construct(){
 	}
 	public function Update()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
+		// $id_pengguna 		=$this->session->userdata('username');
 		//$id_mapel 			
 		
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$id_mapel 		=$this->input->post('id_mapel', TRUE);
 		$this->form_validation->set_rules('nama_mapel','nama_mapel','required|htmlspecialchars');
 		$this->form_validation->set_rules('deskripsi','deskripsi','required|htmlspecialchars');
@@ -100,10 +100,10 @@ function __construct(){
 	}
 	public function Delete()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_mapel','id_mapel','required');
 		if ($this->form_validation->run()== FALSE) {
 			$this->session->set_flashdata('gagal','Maaf, Data Mapel gagal di hapus.!');

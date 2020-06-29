@@ -2,12 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-function __construct(){
+	public function __construct(){
 		parent:: __construct();
 		$this->load->model('Mdl_admin');
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
 		$this->load->helper('cookie');
+		// if (!$this->session->userdata('user_guru')) {
+		// 	redirect('','refresh');
+		// }
 		//$this->load->libraries('session');
 	}
 	public function index()

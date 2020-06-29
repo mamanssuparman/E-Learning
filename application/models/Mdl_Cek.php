@@ -11,7 +11,7 @@ class Mdl_Cek extends CI_Model {
 	}
 	public function get_sequrity()
 	{
-		$unsername		=$this->session->userdata('username');
+		$unsername		=$this->session->userdata('userguru');
 		$level			=$this->session->userdata('level');
 		if(empty($unsername))
 		{

@@ -13,10 +13,10 @@ function __construct(){
 	}
 	public function index()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$data['judul'] 		="Bank Soal";
 		$data['subjudul'] 	="Topik Soal";
 		$data['title'] 		="3-learning";
@@ -29,10 +29,10 @@ function __construct(){
 	}
 	public function Add()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('username');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_mapel','id_mapel','required|htmlspecialchars');
 		$this->form_validation->set_rules('topik_nama','topik_nama','required|htmlspecialchars');
 		$this->form_validation->set_rules('topik_detail','topik_detail','required|htmlspecialchars');
@@ -47,42 +47,57 @@ function __construct(){
 		}
 		
 	}
-	public function Update()
+	public function Update($idtopik=null)
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$this->form_validation->set_rules('id_topik','id_topik','required|htmlspecialchars');
-		$this->form_validation->set_rules('topik_nama','topik_nama','required|htmlspecialchars');
-		$this->form_validation->set_rules('topik_detail','topik_detail','required|htmlspecialchars');
-		if ($this->form_validation->run()== FALSE) {
-			$this->session->set_flashdata('gagal','Maaf, update gagal dilakukan');
-			redirect('admin/Topik_soal');
+		// $id_pengguna 		=$this->session->userdata('username');
+		
+		$idtopik=$this->uri->segment(4);
+		if ($idtopik== sha1($this->input->post('id_topik',TRUE))) {
+			$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
+			$this->form_validation->set_rules('id_topik','id_topik','required|htmlspecialchars');
+			$this->form_validation->set_rules('topik_nama','topik_nama','required|htmlspecialchars');
+			$this->form_validation->set_rules('topik_detail','topik_detail','required|htmlspecialchars');
+			if ($this->form_validation->run()== FALSE) {
+				$this->session->set_flashdata('gagal','Maaf, update gagal dilakukan');
+				redirect('admin/Topik_soal');
+			}
+			else{
+				$this->Mdl_admin->Update_topik_soal();
+				$this->session->set_flashdata('berhasil','Data topik berhasil di perbaharui.!!');
+				redirect('admin/Topik_soal');
+			}
+		
 		}
 		else{
-			$this->Mdl_admin->Update_topik_soal();
-			$this->session->set_flashdata('berhasil','Data topik berhasil di perbaharui.!!');
-			redirect('adminn/Topik_soal/');
+			redirect('admin/');
 		}
 		
 	}
 	public function Delete()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$this->form_validation->set_rules('id_topik','id_topik','required|htmlspecialchars');
-		if ($this->form_validation->run()== FALSE) {
-			$this->session->set_flahsdata('gagal','Maaf, data topik soal gagal di hapus.!');
-			redirect('admin/Topik_soal');
+		// $id_pengguna 		=$this->session->userdata('username');
+		$idtopik=$this->uri->segment(4);
+		if (sha1($this->input->post('id_topik',TRUE)==$idtopik)) {
+			$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
+			$this->form_validation->set_rules('id_topik','id_topik','required|htmlspecialchars');
+			if ($this->form_validation->run()== FALSE) {
+				$this->session->set_flahsdata('gagal','Maaf, data topik soal gagal di hapus.!');
+				redirect('admin/Topik_soal');
+			}
+			else{
+				$this->Mdl_admin->Delete_topik_soal();
+				$this->session->set_flashdata('berhasil','Data topik berhasil di hapus.!!');
+				redirect('admin/Topik_soal');	
+			}
 		}
 		else{
-			$this->Mdl_admin->Delete_topik_soal();
-			$this->session->set_flashdata('berhasil','Data topik berhasil di hapus.!!');
-			redirect('admin/Topik_soal');	
+			redirect('admin/');
 		}
+		
 		
 	}
 }

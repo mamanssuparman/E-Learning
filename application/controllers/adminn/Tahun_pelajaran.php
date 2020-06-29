@@ -2,21 +2,21 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Tahun_pelajaran extends CI_Controller {
-function __construct(){
+	public function __construct(){
 		parent:: __construct();
 		$this->load->model('Mdl_admin');
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
 		$this->load->library('form_validation');
 		$this->load->helper('cookie');
-		//$this->load->libraries('session');
+		// $this->load->libraries('session');
 	}
 	public function index()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
+		// $id_pengguna 		=$this->session->userdata('userguru');
+		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$data['judul'] 		="Siswa";
 		$data['subjudul'] 	="Tahun Pelajaran";
 		$data['title'] 		="3-learning";
@@ -28,7 +28,7 @@ function __construct(){
 	}
 	public function Add()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
@@ -46,7 +46,7 @@ function __construct(){
 	}
 	public function Delete()
 	{
-		// $this->Mdl_Cek->get_sequrity();
+		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);

@@ -17,7 +17,7 @@
 					<td><?php echo $showsoal['soal'];?></td>
 					<td><?php echo $showsoal['jumlah_jawaban'];?></td>
 					<td>
-					<a href="<?php echo base_url();?>index.php/adminn/jawaban/index/<?php echo $showsoal['id_soal'];?>"><button class="btn btn-xs btn-success" title="Tambah Jawaban" data-toggle="modal" data-target="#modal-edit-"><li class="fa fa-edit"></li></button></a>
+					<a href="<?php echo base_url();?>index.php/admin/jawaban/index/<?php echo $showsoal['id_soal'];?>/<?php echo sha1($showsoal['id_soal']) ?>"><button class="btn btn-xs btn-success" title="Tambah Jawaban" data-toggle="modal" data-target="#modal-edit-"><li class="fa fa-edit"></li></button></a>
 					<button class="btn btn-xs btn-warning" title="Edit Soal" data-toggle="modal" data-target="#modal-edit-soal-<?php echo $showsoal['id_soal'];?>"><li class="fa fa-edit"></li></button>
 					<button class="btn btn-xs btn-danger" title="Hapus Soal" data-toggle="modal" data-target="#modal-hapus-soal-<?php echo $showsoal['id_soal'] ?>"><li class="fa fa-times"></li></button>
 					</td>

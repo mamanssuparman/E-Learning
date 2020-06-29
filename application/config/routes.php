@@ -45,12 +45,21 @@ $route['admin/List_materi/Hapus']           ='adminn/List_materi/Delete';
 
 $route['admin/Topik_soal']                  ='adminn/Topik_soal';
 $route['admin/Topik_soal/Simpan']           ='adminn/Topik_soal/Add';
-$route['admin/Topik_soal/Perbaharui']       ='adminn/Topik_soal/Update';
-$route['admin/Topik_soal/Hapus']            ='adminn/Topik_soal/Delete';
+$route['admin/Topik_soal/Perbaharui/(:any)']='adminn/Topik_soal/Update/$2';
+$route['admin/Topik_soal/Hapus/(:any)']     ='adminn/Topik_soal/Delete/$2';
 $route['admin'] = 'adminn';
-<<<<<<< HEAD
-$route['admin/Soal/index/(:num)']           ='adminn/Soal/index/$1';
-$route['admin/Soal/Simpan']                 ='adminn/Soal/Add';
-=======
+
+$route['admin/Soal/index/(:num)/(:any)']    ='adminn/Soal/index/$1/$2';
+$route['admin/Soal/Simpan/(:any)']          ='adminn/Soal/Add/$2';
+$route['admin/Soal/Perbaharui/(:num)/(:any)']='adminn/Soal/Update/$1/$2';
+$route['admin/Soal/Hapus/(:any)']           ='adminn/Soal/Delete/$2';
+
+$route['admin/jawaban/index/(:num)/(:any)']         ='adminn/jawaban/index/$1/$2';
+$route['admin/jawaban/Simpan/(:any)']               ='adminn/jawaban/Add/$2';
+$route['admin/jawaban/Perbaharui/(:num)/(:any)']    ='adminn/jawaban/Update/$1/$2';
+$route['admin/jawaban/Hapus/(:any)/(:any)']                ='adminn/jawaban/Delete/$2/$2';
+
+$route['admin/Lihat_soal/index/(:num)/(:any)']     ='adminn/Lihat_soal/index/$1/$2';
+
+
 $route['user'] = 'user/welcome';
->>>>>>> 48f84982bc927da03881358fcf102e664d9900f8
