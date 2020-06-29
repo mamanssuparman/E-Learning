@@ -48,6 +48,7 @@ $route['admin/Topik_soal/Simpan']           ='adminn/Topik_soal/Add';
 $route['admin/Topik_soal/Perbaharui/(:any)']='adminn/Topik_soal/Update/$2';
 $route['admin/Topik_soal/Hapus/(:any)']     ='adminn/Topik_soal/Delete/$2';
 $route['admin'] = 'adminn';
+<<<<<<< HEAD
 
 $route['admin/Soal/index/(:num)/(:any)']    ='adminn/Soal/index/$1/$2';
 $route['admin/Soal/Simpan/(:any)']          ='adminn/Soal/Add/$2';
@@ -62,4 +63,8 @@ $route['admin/jawaban/Hapus/(:any)/(:any)']                ='adminn/jawaban/Dele
 $route['admin/Lihat_soal/index/(:num)/(:any)']     ='adminn/Lihat_soal/index/$1/$2';
 
 
+=======
+$route['admin/Soal/index/(:num)']           ='adminn/Soal/index/$1';
+$route['admin/Soal/Simpan']                 ='adminn/Soal/Add';
+>>>>>>> a86828891e7f8abf6c7638f403b0445bc9125159
 $route['user'] = 'user/welcome';
