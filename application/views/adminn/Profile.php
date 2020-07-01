@@ -1,4 +1,4 @@
-<form action="<?php echo base_url();?>index.php/adminn/Profile/Update/" method="POST">
+<form action="<?php echo base_url();?>index.php/admin/Profile/Update/<?php echo $this->uri->segment(4); ?>" method="POST">
 <div class="box-body box-profile">
     <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('_assets/default.jpg') ?>" alt="User profile picture">
 <?php 

@@ -1,5 +1,5 @@
 <section class="content">
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
         <div class="box box-primary">
@@ -73,6 +73,9 @@
               case 'Quiz_edit':
                 $this->load->view('adminn/Quiz_edit.php');
                 break;
+              case 'Import':
+                $this->load->view('adminn/Import_siswa');
+                break;
               default:
                 $this->load->view('adminn/Dashboard.php');
                 break;
@@ -82,5 +85,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  
 </section>

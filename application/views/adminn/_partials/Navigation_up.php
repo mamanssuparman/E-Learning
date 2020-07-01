@@ -34,9 +34,7 @@
                   <small>Guru</small>
                 </p>
               </li>
-              <?php 
-                endforeach;
-              ?>
+             
               <!-- Menu Body -->
               <li class="user-body">
                                 <!-- /.row -->
@@ -44,12 +42,15 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="<?php echo base_url();?>index.php/adminn/Profile/" class="btn btn-default btn-flat">Profile</a>
+                  <a href="<?php echo base_url();?>index.php/admin/Profile/index/<?php echo sha1($show['unsername']) ?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url();?>index.php/Login_guru/Log_out/" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url();?>index.php/Logout1" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
+              <?php 
+                endforeach;
+              ?>
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->

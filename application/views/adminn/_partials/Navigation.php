@@ -3,7 +3,7 @@
     <!-- Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library -->
         <li>
-          <a href="<?php echo base_url('');?>index.php/adminn/Dashboard/">
+          <a href="<?php echo base_url('');?>index.php/admin/Dashboard/">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
@@ -187,7 +187,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Quiz/"><i class="fa fa-circle-o"></i> Buat Quiz</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/Quiz/"><i class="fa fa-circle-o"></i> Buat Quiz</a></li>
         <li
         <?php 
           if ($subjudul='Daftar Data Quiz') {
@@ -197,7 +197,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Daftar_quiz/"><i class="fa fa-circle-o"></i> List Data Quiz</a></li>
+        <a href="<?php echo base_url();?>index.php/admin/Daftar_quiz/"><i class="fa fa-circle-o"></i> List Data Quiz</a></li>
       </ul>
     </li>
 <!-- End Menu Quiz/Ulangan -->
@@ -232,4 +232,35 @@
       </ul>
     </li>
 <!-- End Menu Chat/ Forum -->
+<!-- Start Menu Pengaturan -->
+<li 
+    <?php
+      if ($judul=='Extra') {
+        echo "class='active treeview'";
+      }
+      else{
+        echo "class='treeview'";
+      }
+     ?>
+    >
+      <a href="#">
+        <i class="fa fa-upload"></i> <span>Extra</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li 
+        <?php 
+          if ($subjudul='Import Data Siswa') {
+            echo "class='active'>";
+          } 
+          else{
+            echo "class=''>";
+          }
+        ?>
+        <a href="<?php echo base_url();?>index.php/admin/Import/Siswa"><i class="fa fa-circle-o"></i> Import Siswa</a></li>
+      </ul>
+    </li>
+<!-- End Menu Pengaturan -->
   </ul>

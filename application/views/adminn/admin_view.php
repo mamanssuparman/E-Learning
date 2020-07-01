@@ -109,7 +109,6 @@
 
     <!-- Main content -->
     <section class="content">
-      
       <?php 
         $this->load->view('adminn/_partials/Content.php');
       ?>

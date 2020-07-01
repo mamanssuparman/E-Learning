@@ -2,7 +2,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<h3> Daftar Soal Topik : 
+		<h3> Daftar Soal : 
 		<?php 
 			foreach ($data_topik->result_array() as $showtopik) {
 				echo "$showtopik[topik_nama]";
@@ -13,9 +13,12 @@
 </div>
 <hr>
 <div class="row">
-	<div class="col-md-12">
-		<a href="<?php echo base_url();?>index.php/admin/Soal/index/<?php echo $this->uri->segment(4);?>/<?php echo sha1($this->uri->segment(4)); ?>"> <button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add Soal</button> </a>
-		<table id="example1" class="table table-bordered table-hover table-nowrap">
+<a href="<?php echo base_url();?>index.php/admin/Soal/index/<?php echo $this->uri->segment(4);?>/<?php echo sha1($this->uri->segment(4)); ?>"> <button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add Soal</button> </a>	
+<div class="col-md-12">
+		
+	<div class="table-responsive">
+		
+		<table id="example1" class="table table-bordered table-hover table-nowrap fluid">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -41,6 +44,7 @@
 				?>
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 <!-- Modal Edit Soal -->
@@ -51,16 +55,15 @@
 	<div class="modal-dialog modal-lg">
 	  <div class="modal-content">
 	    <div class="modal-header">
-	      <h4 class="modal-title">Tambah Data Topik</h4>
+	      <h4 class="modal-title">Perbaharui Data Soal</h4>
 	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Update_list/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Update_list/<?php echo sha1($showsoal['id_soal']);?>/<?php echo $this->uri->segment(4) ?>">
 	    <div class="modal-body">
 	    	<p><h4>Data Soal :</h4>
-	    	<input type="hidden" name="id_soal" value="<?php echo $showsoal['id_soal'] ?>">
-	    	<input type="hidden" name="id_topik" value="<?php echo $this->uri->segment(5);?>">
+	    	<input type="hidden" name="array" value="<?php echo $showsoal['id_soal'] ?>">
 	    	</p>
 	    	<p>
 	    		<textarea class="ckeditor" id="ckditor" name="soal">
@@ -96,10 +99,9 @@
 	        <span aria-hidden="true">&times;</span>
 	      </button>
 	    </div>
-	    <form method="POST" action="<?php echo base_url();?>index.php/adminn/Soal/Delete_list/">
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Soal/Delete_list/<?php echo sha1($showsoal['id_soal'])?>/<?php echo $this->uri->segment(4);?>">
 	    <div class="modal-body">
-	    	<input type="hidden" name="id_soal" value="<?php echo $showsoal['id_soal'] ?>">
-	    	<input type="hidden" name="id_topik" value="<?php echo $this->uri->segment(4);?>">
+	    	<input type="hidden" name="array" value="<?php echo $showsoal['id_soal'] ?>">
 	    	<p>
 	    		Apakah anda yakin akan menghapus data soal tersebut.!!!!
 	    	</p>

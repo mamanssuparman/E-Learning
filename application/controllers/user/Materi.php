@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Materi extends CI_Controller {
 function __construct(){
 		parent:: __construct();
-		if (!$this->session->userdata('id_siswa');) {
+		if (!$this->session->userdata('id_siswa')) {
 			redirect('','refresh');
 		}
 	}

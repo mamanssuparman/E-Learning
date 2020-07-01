@@ -19,7 +19,7 @@
       <div class="icon">
         <i class="fa fa-clone"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/adminn/Daftar_soal/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/Topik_soal" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-3">
@@ -40,7 +40,7 @@
       <div class="icon">
         <i class="fa fa-edit"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/adminn/List_materi/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/List_materi/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-3">
@@ -61,7 +61,7 @@
       <div class="icon">
         <i class="fa fa-book"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/adminn/Mat_pel/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/Mat_pel/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-3">
@@ -81,7 +81,7 @@
       <div class="icon">
         <i class="fa fa-users"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/adminn/Siswa/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/Siswa/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
     </div>
   </div>
 </div>

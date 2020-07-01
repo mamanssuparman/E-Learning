@@ -6,6 +6,13 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Route Admin
+$route['admin/Profile/index/(:any)']              ='adminn/Profile/index/$2';
+$route['admin/Profile/Update/(:any)']       ='adminn/Profile/Update/$2';
+$route['Logout1']                           ='Login_guru/Log_out';
+
+$route['admin']                             ='adminn/Dashboard';
+$route['admin/Dashboard']                   ='adminn/Dashboard';
+
 $route['admin/Tahun_pelajaran']             ='adminn/Tahun_pelajaran';   
 $route['admin/Tahun_pelajaran/Simpan']      ='adminn/Tahun_pelajaran/Add';
 $route['admin/Tahun_pelajaran/Hapus']       ='adminn/Tahun_pelajaran/Delete';
@@ -48,12 +55,13 @@ $route['admin/Topik_soal/Simpan']           ='adminn/Topik_soal/Add';
 $route['admin/Topik_soal/Perbaharui/(:any)']='adminn/Topik_soal/Update/$2';
 $route['admin/Topik_soal/Hapus/(:any)']     ='adminn/Topik_soal/Delete/$2';
 $route['admin'] = 'adminn';
-<<<<<<< HEAD
 
 $route['admin/Soal/index/(:num)/(:any)']    ='adminn/Soal/index/$1/$2';
 $route['admin/Soal/Simpan/(:any)']          ='adminn/Soal/Add/$2';
 $route['admin/Soal/Perbaharui/(:num)/(:any)']='adminn/Soal/Update/$1/$2';
 $route['admin/Soal/Hapus/(:any)']           ='adminn/Soal/Delete/$2';
+$route['admin/Soal/Update_list/(:any)/(:num)']     ='adminn/Soal/Update_list/$2/$1';
+$route['admin/Soal/Delete_list/(:any)/(:num)']      ='adminn/Soal/Delete_list/$2/$1';
 
 $route['admin/jawaban/index/(:num)/(:any)']         ='adminn/jawaban/index/$1/$2';
 $route['admin/jawaban/Simpan/(:any)']               ='adminn/jawaban/Add/$2';
@@ -62,9 +70,14 @@ $route['admin/jawaban/Hapus/(:any)/(:any)']                ='adminn/jawaban/Dele
 
 $route['admin/Lihat_soal/index/(:num)/(:any)']     ='adminn/Lihat_soal/index/$1/$2';
 
+$route['admin/Quiz']                                ='adminn/Quiz';
+$route['admin/Quiz/Simpan']                         ='adminn/Quiz/Add';
+$route['admin/Daftar_quiz']                         ='adminn/Daftar_quiz';
+$route['admin/Quiz/Perbaharui/(:num)/(:any)']       ='adminn/Quiz/Edit/$1/$2';
+$route['admin/Quiz/Update/(:any)/(:num)']           ='adminn/Quiz/Update/$2/$1';
 
-=======
-$route['admin/Soal/index/(:num)']           ='adminn/Soal/index/$1';
-$route['admin/Soal/Simpan']                 ='adminn/Soal/Add';
->>>>>>> a86828891e7f8abf6c7638f403b0445bc9125159
+$route['admin/Import/Siswa']                        ='adminn/Import';
+$route['admin/Import/Import_siswa']                 ='adminn/Import/Import_siswa/';
+$route['admin/Daftar_quiz/Hapus/(:any)']            ='adminn/Daftar_quiz/Delete/$2';
+
 $route['user'] = 'user/welcome';

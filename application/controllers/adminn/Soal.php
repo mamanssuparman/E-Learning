@@ -159,13 +159,27 @@ function __construct(){
 	{
 		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
-		// $id_pengguna 		=$this->session->userdata('username');
+		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
-		$id_topik 	=$this->input->post('id_topik', TRUE);
-		$id_soal 	=$this->input->post('id_soal', TRUE);
-		$this->Mdl_admin->Update_soal($id_soal);
-		$this->session->set_flashdata('berhasil','Data soal berhasil di perbaharui.!!');
-		redirect('adminn/Lihat_soal/index/'.$id_topik,'refresh');
+		$idsoal=$this->input->post('array',TRUE);
+		$shaidsoal=$this->uri->segment(4);
+		$idtopik =$this->uri->segment(5);
+		if (sha1($idsoal)==$shaidsoal) {
+			$this->form_validation->set_rules('array','array','required|htmlspecialchars');
+			$this->form_validation->set_rules('soal','soal','required');
+			if ($this->form_validation->run()== FALSE) {
+				$this->session->set_flashdata('gagal','Maaf, Perubahan data tidak bisa dilakukan.!');
+				redirect('admin/Lihat_soal/index/'.$idtopik.'/'.sha1($idtopik));
+			}
+			else{
+				$this->Mdl_admin->Update_list_soal();
+				$this->session->set_flashdata('berhasil','Data soal berhasil diperbaharui.!');
+				redirect('admin/Lihat_soal/index/'.$idtopik.'/'.sha1($idtopik));
+			}
+		}else{
+			redirect('admin','refresh');
+		}
+		
 	}
 	public function Delete_list()
 	{
@@ -173,18 +187,31 @@ function __construct(){
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
-		$id_topik 	=$this->input->post('id_topik',TRUE);
-		$id_soal 	=$this->input->post('id_soal', TRUE);
-		$this->db->trans_start();
-		$this->db->query("delete from tbl_soal where id_soal='$id_soal'");
-		$this->db->trans_complete();
-		if ($this->db->trans_status()===1) {
-			$this->session->set_flashdata('berhasil','Maaf, Data soal tersebut tidak bisa di hapus.!!!');
-			redirect('adminn/Lihat_soal/index/'.$id_topik,'refresh');
+		$idsoal 	=$this->input->post('array',TRUE);
+		$shaidsoal	=$this->uri->segment(4);
+		$idtopik 	=$this->uri->segment(5);
+		if (sha1($idsoal)==$shaidsoal) {
+			$this->form_validation->set_rules('array','array','required|htmlspecialchars');
+			if ($this->form_validation->run()== FALSE) {
+				redirect('admin','refresh');
+			}
+			else{
+				$this->db->trans_start();
+				$this->db->where('id_soal',$idsoal);
+				$this->db->delete('tbl_soal');
+				$this->db->trans_complete();
+				if ($this->db->trans_status()===1) {
+					$this->session->set_flashdata('gagal','Maaf, Data soal tersebut tidak bisa di hapus.!!!');
+					redirect('admin/Lihat_soal/index/'.$idtopik.'/'.sha1($idtopik),'refresh');
+				}
+				else{
+					$this->session->set_flashdata('berhasil','Data Soal berhasil di hapus.!!!');
+					redirect('admin/Lihat_soal/index/'.$idtopik.'/'.sha1($idtopik),'refresh');
+				} 	
+			}
 		}
 		else{
-			$this->session->set_flashdata('berhasil','Data Soal berhasil di hapus.!!!');
-			redirect('adminn/Lihat_soal/index/'.$id_topik,'refresh');
-		} 	
+			redirect('admin','refresh');
+		}
 	}
 }

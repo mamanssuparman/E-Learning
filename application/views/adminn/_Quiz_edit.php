@@ -1,10 +1,10 @@
 <?php
 	foreach ($data_quiz->result() as $showquiz):
 ?>
-<form name="save" method="POST" action="<?php echo base_url();?>index.php/adminn/Quiz/Update/">
+<form name="save" method="POST" action="<?php echo base_url();?>index.php/admin/Quiz/Update/<?php echo sha1($this->uri->segment(4)) ?>/<?php echo $this->uri->segment(4); ?>">
 	<div class="row">
 		<div class="col-md-12">
-			<input type="text" name="id_tes" value="<?php echo $this->uri->segment(4);?>">
+			<input type="hidden" name="array" value="<?php echo $this->uri->segment(4);?>">
 			<p>
 				Nama Tes/ Quiz
 			</p>

@@ -429,8 +429,22 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$tes_acak_jawaban 		='1';
 		$id_topik 				=$this->input->post('id_topik',TRUE);
 		$kelas 					=$this->input->post('id_kelas', TRUE);
+		$data=array(
+			'tes_nama'		=>$tes_nama,
+			'tes_detail' 	=>$tes_detail,
+			'tes_mulai' 	=>$tes_mulai,
+			'tes_selesai'	=>$tes_selesai,
+			'durasi_waktu' 	=>$durasi_waktu,
+			'tes_score_benar'	=>$tes_score_benar,
+			'tes_score_maksimal'=>$tes_score_maksimal,
+			'tes_jumlah_soal'	=>$tes_jumlah_soal,
+			'tes_acak_soal' 	=>$tes_acak_soal,
+			'tes_acak_jawaban'	=>$tes_acak_jawaban,
+			'id_topik' 			=>$id_topik
+		);
 		$this->db->trans_start();
-		$this->db->query("insert into tbl_tes(tes_nama,tes_detail,tes_mulai,tes_selesai,durasi_waktu,tes_score_benar,tes_score_maksimal,tes_jumlah_soal,tes_acak_soal,tes_acak_jawaban,id_topik)values('$tes_nama','$tes_detail','$tes_mulai','$tes_selesai','$durasi_waktu','$tes_score_benar','$tes_score_maksimal','$tes_jumlah_soal','$tes_acak_soal','$tes_acak_jawaban','$id_topik')");
+		$this->db->insert('tbl_tes',$data);
+		// $this->db->query("insert into tbl_tes(tes_nama,tes_detail,tes_mulai,tes_selesai,durasi_waktu,tes_score_benar,tes_score_maksimal,tes_jumlah_soal,tes_acak_soal,tes_acak_jawaban,id_topik)values('$tes_nama','$tes_detail','$tes_mulai','$tes_selesai','$durasi_waktu','$tes_score_benar','$tes_score_maksimal','$tes_jumlah_soal','$tes_acak_soal','$tes_acak_jawaban','$id_topik')");
 		$id_tes =$this->db->insert_id();
 		$result=array();
 		foreach ($kelas as $key => $value) {
@@ -444,12 +458,15 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	}
 	public function get_data_quiz()
 	{
-		$eksekusi 	=$this->db->query("select * from tbl_tes");
-		return $eksekusi;
+		return $this->db->get('tbl_tes');
+		// $eksekusi 	=$this->db->query("select * from tbl_tes");
+		// return $eksekusi;
 	}
 	public function get_data_quiz_edit($id_quiz)
 	{
-		return $this->db->query("select * from tbl_tes where id_tes='$id_quiz'");
+		$this->db->where('id_tes',$id_quiz);
+		return $this->db->get('tbl_tes');
+		// return $this->db->query("select * from tbl_tes where id_tes='$id_quiz'");
 	}
 	public function get_data_diskusi()
 	{
@@ -483,9 +500,18 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$nama 		=$this->input->post('nama',TRUE);
 		$tempat_lahir	=$this->input->post('tempat_lahir',TRUE);
 		$tgl_lahir 		=$this->input->post('tgl_lahir', TRUE);
-		$password 		=md5($this->input->post('password'));
-		$eksekusi		=$this->db->query("update tbl_guru set nama='$nama',panserword='$password',tempat_lahir='$tempat_lahir',tgl_lahir='$tgl_lahir' where unsername='$id_pengguna'");
-		return $eksekusi;
+		$password 		=password_hash($this->input->post('password',TRUE),PASSWORD_DEFAULT);
+		$data=array(
+			'nama' 		=>$nama,
+			'panserword'=>$password,
+			'tempat_lahir'	=>$tempat_lahir,
+			'tgl_lahir'		=>$tgl_lahir
+		);
+		$this->db->set($data);
+		$this->db->where('unsername',$id_pengguna);
+		$this->db->update('tbl_guru');
+		// $eksekusi		=$this->db->query("update tbl_guru set nama='$nama',panserword='$password',tempat_lahir='$tempat_lahir',tgl_lahir='$tgl_lahir' where unsername='$id_pengguna'");
+		// return $eksekusi;
 	}
 	public function Update_guru()
 	{
@@ -523,7 +549,9 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	}
 	public function get_data_quiz_kelas($id_tes)
 	{
-		return $this->db->query("select * from tbl_tes_group_kelas where id_tes='$id_tes'");
+		$this->db->where('id_tes',$id_tes);
+		return $this->db->get('tbl_tes_group_kelas');
+		// return $this->db->query("select * from tbl_tes_group_kelas where id_tes='$id_tes'");
 	}
 	public function delete_group_tes_before($id_quiz)
 	{
@@ -532,7 +560,7 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	public function update_tes()
 	{
 		$this->db->trans_start();
-		$id_tes					=$this->input->post('id_tes',TRUE);
+		$id_tes					=$this->input->post('array',TRUE);
 		$tes_nama 				=$this->input->post('tes_nama',TRUE);
 		$tes_detail				=$this->input->post('tes_detail',TRUE);
 		$tes_mulai 				=substr($this->input->post('rentangwaktu',TRUE), 0,19);
@@ -545,18 +573,52 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$tes_acak_jawaban 		='1';
 		$id_topik 				=$this->input->post('id_topik',TRUE);
 		$id_kelas				=$this->input->post('id_kelas', TRUE);
-		$this->db->query("update tbl_tes set tes_nama='$tes_nama', tes_detail='$tes_detail',tes_mulai='$tes_mulai',tes_selesai='$tes_selesai',durasi_waktu='$durasi_waktu',tes_score_benar='$tes_score_benar',tes_score_maksimal='$tes_score_maksimal',tes_jumlah_soal='$tes_jumlah_soal',tes_acak_soal='$tes_acak_soal' where id_tes='$id_tes'");
-		$this->db->query("delete from tbl_tes_group_kelas where id_tes='$id_tes'");
+		$data=array(
+			'tes_nama' 		=>$tes_nama,
+			'tes_detail' 	=>$tes_detail,
+			'tes_mulai' 	=>$tes_mulai,
+			'tes_selesai' 	=>$tes_selesai,
+			'durasi_waktu'	=>$durasi_waktu,
+			'tes_score_benar'=>$tes_score_benar,
+			'tes_score_maksimal'=>$tes_score_maksimal,
+			'tes_jumlah_soal'	=>$tes_jumlah_soal,
+			'tes_acak_soal'		=>$tes_acak_soal,
+			'tes_acak_jawaban'	=>$tes_acak_jawaban,
+			'id_topik'			=>$id_topik
+		);
+		$this->db->set($data);
+		$this->db->where('id_tes',$id_tes);
+		$this->db->update('tbl_tes');
+		// $this->db->query("update tbl_tes set tes_nama='$tes_nama', tes_detail='$tes_detail',tes_mulai='$tes_mulai',tes_selesai='$tes_selesai',durasi_waktu='$durasi_waktu',tes_score_benar='$tes_score_benar',tes_score_maksimal='$tes_score_maksimal',tes_jumlah_soal='$tes_jumlah_soal',tes_acak_soal='$tes_acak_soal' where id_tes='$id_tes'");
+		$this->db->where('id_tes',$id_tes);
+		$this->db->delete('tbl_tes_group_kelas');
+		// $this->db->query("delete from tbl_tes_group_kelas where id_tes='$id_tes'");
 		$result=array();
 		foreach ($id_kelas as $key => $value) {
 			$result[]=array(
-				'id_tes' =>$_POST['id_tes'],
+				'id_tes' =>$id_tes,
 				'id_kelas' =>$_POST['id_kelas'][$key]
 			);
 		}
 		$this->db->insert_batch('tbl_tes_group_kelas',$result);
 		$this->db->trans_complete();
 
+	}
+	public function Delete_tbl_tes_group_kelas()
+	{
+		$id_kelas				=$this->input->post('array', TRUE);
+		$id_tes 			=$this->input->post('id_tes',TRUE);
+		$this->db->where('id_tes',$id_tes);
+		$this->db->delete('tbl_tes_group_kelas');
+		$result=array();
+		foreach ($id_kelas as $key => $value) {
+			$result[]=array(
+				'id_tes' =>$id_tes,
+				'id_kelas' =>$_POST['id_kelas'][$key]
+			);
+		}
+		$this->db->insert_batch('tbl_tes_group_kelas',$result);
+		$this->db->trans_complete();
 	}
 	public function update_tes1($id_quiz)
 	{
@@ -565,7 +627,7 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$id_kelas =$this->input->post('id_kelas', TRUE);
 		//$id_mapel =$this->input->post('id_',TRUE);
 		$result=array();
-		foreach ($id_kelas as $key => $value) {
+		foreach($id_kelas as $key => $value) {
 			$result[]=array(
 				'id_tes'	=>$tesnya);
 		}
@@ -594,5 +656,25 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	{
 		$this->db->where('id_jawaban',$idjawaban);
 		$this->db->delete('tbl_jawaban');
+	}
+	public function Update_list_soal()
+	{
+		$id_soal=$this->input->post('array',TRUE);
+		$soal	=$this->input->post('soal',TRUE);
+		$datA=array(
+			'soal'	=>$soal
+		);
+		$this->db->set($datA);
+		$this->db->where('id_soal',$id_soal);
+		$this->db->update('tbl_soal');
+	}
+	public function Delete_quiz($idtes)
+	{
+		$this->db->where('id_tes',$idtes);
+		$this->db->delete('tbl_tes');
+	}
+	public function Import_siswa($data)
+	{
+		$this->db->insert_batch('tbl_user',$data);
 	}
 }

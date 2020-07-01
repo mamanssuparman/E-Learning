@@ -4,7 +4,7 @@
 <?php
 	$uri3=$this->uri->segment(3);
 	switch ($uri3) {
-		case 'Edit':
+		case 'Perbaharui':
 			$this->load->view('adminn/_Quiz_edit.php');
 			break;
 		default:

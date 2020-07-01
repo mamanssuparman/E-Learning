@@ -8,12 +8,13 @@ function __construct(){
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
 		$this->load->helper('cookie');
+		$this->load->library('form_validation');
 		//$this->load->libraries('session');
 	}
 	public function index()
 	{
 		$this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$data['judul'] 		="Quiz";
@@ -32,11 +33,26 @@ function __construct(){
 		$this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$this->Mdl_admin->Add_tes();
-		$this->session->set_flashdata('berhasil','Data Tes berhasil di simpan.!!');
-		redirect('adminn/Quiz/');
+		$this->form_validation->set_rules('tes_nama','tes_nama','required|htmlspecialchars');
+		$this->form_validation->set_rules('tes_detail','tes_detail','required|htmlspecialchars');
+		$this->form_validation->set_rules('tes_score_benar','tes_score_benar','required');
+		$this->form_validation->set_rules('durasi_waktu','durasi_waktu','required');
+		$this->form_validation->set_rules('tes_jumlah_soal','tes_jumlah_soal','required');
+		if ($this->form_validation->run()== FALSE) {
+			$this->session->set_flashdata('gagal','Maaf, data quiz gagal di simpan.!');
+			redirect('admin/Quiz');
+		}
+		else{
+			$this->Mdl_admin->Add_tes();
+			$this->session->set_flashdata('berhasil','Data Tes berhasil di simpan.!!');
+			redirect('admin/Quiz');
+		}
+
+		// $this->Mdl_admin->Add_tes();
+		// $this->session->set_flashdata('berhasil','Data Tes berhasil di simpan.!!');
+		// redirect('adminn/Quiz/');
 	}
-	public function Edit($id_quiz=null)
+	public function Edit()
 	{
 		$this->Mdl_Cek->get_sequrity();
 		$this->Mdl_Cek->get_sequrity_guru();
@@ -48,31 +64,57 @@ function __construct(){
 		$data['judulbesar']	="Quiz/ Ulangan";
 		$data['user'] 		="";
 		$data['level'] 		="";
-		$data['data_quiz'] 	=$this->Mdl_admin->get_data_quiz_edit($id_quiz);
-		//untuk data kelas terpilih
-		$data['data_kelas_pilih']=$this->Mdl_admin->get_data_quiz_kelas($id_quiz)->result();
-		foreach ($data['data_kelas_pilih'] as $tampilkelaspilih) {
-			$nilaikelas[]=(float) $tampilkelaspilih->id_kelas;
+		$id_quiz=$this->uri->segment(4);
+		$shaidquiz =$this->uri->segment(5);
+		if (sha1($id_quiz)==$shaidquiz) {
+			$data['data_quiz'] 	=$this->Mdl_admin->get_data_quiz_edit($id_quiz);
+			//untuk data kelas terpilih
+			$data['data_kelas_pilih']=$this->Mdl_admin->get_data_quiz_kelas($id_quiz)->result();
+			foreach ($data['data_kelas_pilih'] as $tampilkelaspilih) {
+				$nilaikelas[]=(float) $tampilkelaspilih->id_kelas;
+			}
+			$data['tampil_pilih_kelas'] = json_encode($nilaikelas);
+			//untuk data topik terpilih
+			$data['data_kelas'] =$this->Mdl_admin->get_data_kelas();
+			$data['data_topik']	=$this->Mdl_admin->get_data_topik();
+			$this->load->view('adminn/admin_view.php',$data);	
 		}
-		$data['tampil_pilih_kelas'] = json_encode($nilaikelas);
-		//untuk data topik terpilih
-		$data['data_kelas'] =$this->Mdl_admin->get_data_kelas();
-		$data['data_topik']	=$this->Mdl_admin->get_data_topik();
-		$this->load->view('adminn/admin_view.php',$data);
+		else{
+			redirect('admin');
+		}
+		
 	}
-	public function Update()
+	public function Update($ke1=null,$ke2=null)
 	{
 		$this->Mdl_Cek->get_sequrity();
 		$this->Mdl_Cek->get_sequrity_guru();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		//$id_quiz=$this->input->post('id_tes',TRUE);
-		$this->Mdl_admin->update_tes();
-		//$this->Mdl_admin->delete_group_tes_before();
-		//$this->Mdl_admin->update_tes1($id_quiz);
+		$id_quiz=$this->input->post('id_tes',TRUE);
+		$idtes=$this->uri->segment(5);
+		$shaidtes =$this->uri->segment(4);
+		if (sha1($idtes)==$shaidtes) {
+			$this->form_validation->set_rules('tes_nama','tes_nama','required');
+			// $this->form_validation->set_rules('tes_detail','tes_detail','required|htmlspecialchars');
+			// $this->form_validation->set_rules('rentangwaktu','rentangwaktu','required');
+			// $this->form_validation->set_rules('tes_score_benar','tes_score_benar','required');
+			// $this->form_validation->set_rules('durasi_waktu','durasi_waktu','required');
+			// $this->form_validation->set_rules('tes_jumlah_soal','tes_jumlah_soal','required');
+			// $this->form_validation->set_rules('tes_acak_soal','tes_acak_soal','required');
+			if ($this->form_validation->run()== FALSE) {
+				$this->session->set_flashdata('gagal','Maaf, update data quiz gagal dilakukan');
+				redirect('admin/Quiz/Perbaharui/'.$idtes.'/'.$shaidtes,'refresh');
+			}
+			else{
+				$this->Mdl_admin->update_tes();
+				// $this->Mdl_admin->Delete_tbl_tes_group_kelas();
+				$this->session->set_flashdata('berhasil','Update Data Tes Berhasil');
+				redirect('admin/Quiz/Perbaharui/'.$idtes.'/'.$shaidtes,'refresh');
+			}
+		}
+		else{
+			echo "gagal";
+		}
 		
-		//$this->Mdl_admin->Add_tes();
-		$this->session->set_flashdata('berhasil','Data Tes berhasil di simpan.!!');
-		redirect('adminn/Daftar_quiz/');
 	}
 }

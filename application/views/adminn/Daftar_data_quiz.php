@@ -2,7 +2,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Quiz</button>
+		<a href="<?php echo base_url(); ?>index.php/admin/Quiz"><button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Quiz</button></a>
 	</div>
 </div>
 <hr>
@@ -32,8 +32,9 @@
 							echo "<td>$showquiz[tes_selesai]</td>";
 							echo "<td>$showquiz[durasi_waktu]</td>"; ?>
 							<td>
-								<a href="<?php echo base_url();?>index.php/adminn/Quiz/Edit/<?php echo $showquiz['id_tes'];?>" class="btn btn-primary btn-xs" title="Edit Quiz"><li class="fa fa-edit"></li></a>
-								<a href="" class="btn btn-danger btn-xs" title="Hapus Quiz"><li class="fa fa-recycle"></li> </a>
+								<a href="<?php echo base_url();?>index.php/admin/Quiz/Perbaharui/<?php echo $showquiz['id_tes'];?>/<?php echo sha1($showquiz['id_tes']) ?>" class="btn btn-primary btn-xs" title="Edit Quiz"><li class="fa fa-edit"></li></a>
+								<!-- <a href="" class="btn btn-danger btn-xs" title="Hapus Quiz"><li class="fa fa-times"></li> </a> -->
+								<button class="btn btn-danger btn-xs" title="Hapus Quiz" data-toggle="modal" data-target="#modal-hapus-quiz-<?php echo $showquiz['id_tes'] ?>"> <li class="fa fa-times"></li> </button>
 							</td>
 
 				<?php	echo "</tr>";
@@ -43,3 +44,41 @@
 		</table>
 	</div>
 </div>
+<!-- Modal Hapus Quiz -->
+<?php 
+	foreach ($data_quiz->result_array() as $showquiz) :
+?>
+<div class="modal fade" id="modal-hapus-quiz-<?php echo $showquiz['id_tes'] ?>">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <h4 class="modal-title">Hapus Data Quiz</h4>
+	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <span aria-hidden="true">&times;</span>
+	      </button>
+	    </div>
+	    <form method="POST" action="<?php echo base_url();?>index.php/admin/Daftar_quiz/Hapus/<?php echo sha1($showquiz['id_tes']) ?>">
+	    <div class="modal-body">
+			<p>
+				<input type="hidden" name="array" value="<?php echo $showquiz['id_tes'] ?>">
+			</p>	
+	      <p>
+		  Apakah anda yakin akan menghapus data quiz <b> <?php echo $showquiz['tes_nama'] ?></b> ?
+	      </p>
+	      <p>
+	      	
+	      </p>
+	    </div>
+	    <div class="modal-footer justify-content-between">
+	      <button type="button" class="btn btn-danger" data-dismiss="modal"><li class="fa fa-times"></li> Batal</button>
+	      <button type="submit" class="btn btn-success"><li class="fa fa-check"></li> Ya</button>
+	    </div>
+	    </form>
+	  </div>
+	  <!-- /.modal-content -->
+	</div>
+<!-- /.modal-dialog -->
+</div>
+<?php 
+	endforeach;
+?>

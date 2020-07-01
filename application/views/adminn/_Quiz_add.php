@@ -1,4 +1,4 @@
-<form name="save" method="POST" action="<?php echo base_url();?>index.php/adminn/Quiz/Add/">
+<form name="save" method="POST" action="<?php echo base_url();?>index.php/admin/Quiz/Simpan">
 	<div class="row">
 		<div class="col-md-12">
 			<p>
