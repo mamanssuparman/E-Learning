@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mod_quiz extends CI_Model {
 	var $table = 'tbl_materi';
-	var $column_order 	= array('judul_materi','nama_mapel','deskripsi', null);
-	var $column_search 	= array('judul_materi','nama_mapel','deskripsi');
-	var $order 			= array('id_materi'=>'asc');
+	var $column_order 	= array('tes_nama','tes_jumlah_soal','tbl_tes_selesai','tes_detail', null);
+	var $column_search 	= array('tes_nama','tes_jumlah_soal','tbl_tes_selesai','tes_detail');
+	var $order 			= array('tbl_tes.id_tes'=>'des');
 
 	private function _get_datatables_query()
 	{
@@ -56,14 +56,32 @@ class Mod_quiz extends CI_Model {
 	}
 	function join()
 	{
-		$this->db->join('tbl_mapel', 'tbl_materi.id_mapel = tbl_mapel.id_mapel', 'left');
-		$this->db->from('tbl_materi');
+		$this->db->join('tbl_tes', 'tbl_tes_group_kelas.id_tes = tbl_tes.id_tes', 'left');
+		$this->db->where('id_kelas', $this->session->userdata('kelas'));
+		$this->db->from('tbl_tes_group_kelas');
 	}
-	function ambil($id)
+	function ambil()
 	{
-		$this->db->join('tbl_mapel', 'tbl_materi.id_mapel = tbl_mapel.id_mapel', 'left');
-		$this->db->where('id_materi', $id);
-		return $this->db->get('tbl_materi');
+		$this->db->join('tbl_tes', 'tbl_tes_group_kelas.id_tes = tbl_tes.id_tes', 'left');
+		$this->db->where('id_kelas', $this->session->userdata('kelas'));
+		return $this->db->get('tbl_tes_group_kelas');
+	}
+	function ambilAcak($table,$id,$lim)
+	{
+		$this->db->order_by('rand()');
+		$this->db->where($id);
+		return $this->db->get($table, $lim);
+	}
+	function acakJawaban($table,$id)
+	{
+		$this->db->order_by('rand()');
+		$this->db->where($id);
+		return $this->db->get($table);
+	}
+	function ambilJawaban($table,$jawaban)
+	{
+		$this->db->where_in('id_soal', $jawaban);
+		return $this->db->get('tbl_jawaban');
 	}
 	
 

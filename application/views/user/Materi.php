@@ -13,6 +13,7 @@
               <tr>
                 <th>No</th>
                 <th>Materi</th>
+                <th>Guru</th>
                 <th>Mata Pelajaran</th>
                 <th>Deskripsi</th>
                 <th>Aksi</th>
@@ -43,10 +44,6 @@
       "ajax" : {
         "url" :  "<?php echo base_url('user/materi/ajax_list') ?>",
         "type":   "POST",
-        "data": function(data){
-          data.jurusan = $('#jurusan').val();
-          data.nama = $('#nama').val();
-        }
       },
       "language" :{
         "sEmptyTable" : "Tidak ada data",

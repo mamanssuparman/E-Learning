@@ -29,6 +29,7 @@ function __construct(){
 			$row 	= array();
 			$row[]	= $no;
 			$row[]	= $x->judul_materi;
+			$row[]	= $x->nama;
 			$row[]	= $x->nama_mapel;
 			$row[]	= $x->deskripsi;
 			$row[]	= '<a href="'.base_url('materi/view/'.base64_encode($x->id_materi)).'" class="btn btn-primary" title=""><i class="fa fa-eye"></i></a>';

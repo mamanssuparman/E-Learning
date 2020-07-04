@@ -17,7 +17,8 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url('_assets') ?>/dist/css/skins/_all-skins.min.css">
-
+<!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?=base_url('_assets/')?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
 
 <!-- jQuery 3 -->
@@ -42,6 +43,14 @@
 <script src="<?=base_url('_assets/')?>plugins/toastr/toastr.min.js"></script>
 <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
   <!-- Google Font -->
+  <script>
+  const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+</script>
 </head>
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
@@ -56,11 +65,11 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Top Navigation
-          <small>Example 2.0</small>
+          3-Learning
+          <small>SMKN 3 Banjar</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="<?=base_url('siswa')?>"><i class="fa fa-dashboard"></i> user</a></li>
+          <li><a href="<?=base_url('siswa')?>"><i class="fa fa-dashboard"></i> siswa</a></li>
           <li><a><?=$title;?></a></li>
         </ol>
       </section>

@@ -7,11 +7,14 @@ class Welcome extends CI_Controller {
 		if (!$this->session->userdata('id_siswa')) {
 			redirect('','refresh');
 		}
+		$this->load->model('mod_quiz','mq');
 	}
 	public function index()
 	{
 		$data = array(
 			'siswa' => $this->mc->ambil('tbl_user',['id_user' => $this->session->userdata('id_siswa')])->row_array(),
+			'materi' => $this->mc->ambil('tbl_mapel_kelas_guru_group',['id_kelas' => $this->session->userdata('kelas')])->num_rows(),
+			'quiz' => $this->mq->ambil()->num_rows(),
 			'kelas' => $this->mc->ambil('tbl_kelas',['id_kelas' => $this->session->userdata('kelas')])->row_array(),
 			'title' => 'Menu Utama'
 		);
