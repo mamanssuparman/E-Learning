@@ -1,5 +1,7 @@
+
+  <?=$this->session->userdata('id_guru');?> 
 <?php foreach ($diskusi as $x): ?>
-  <?php if ($x->id_user == $this->session->userdata('id_siswa')): ?>
+  <?php if ($x->id_guru == $this->session->userdata('id_guru')): ?>
     <!-- Message to the right -->
     <div class="direct-chat-msg right">
       <div class="direct-chat-info clearfix">
@@ -19,7 +21,7 @@
     <!-- Message. Default to the left -->
     <div class="direct-chat-msg">
       <div class="direct-chat-info clearfix">
-        <span class="direct-chat-name pull-left"><?=$x->nama_siswa?><?=$x->nama?></span>
+        <span class="direct-chat-name pull-left"><?=$x->nama_siswa?></span>
         <span class="direct-chat-timestamp pull-right"><?=$this->elearning->waktu_lalu($x->waktu);?></span>
       </div>
       <!-- /.direct-chat-info -->

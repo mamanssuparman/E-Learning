@@ -72,6 +72,14 @@ class Mod_crud extends CI_Model {
 		$this->db->where('tbl_diskusi.id_kelas', $this->session->userdata('kelas'));
 		return $this->db->get('tbl_diskusi');
 	}
+	function ambilDiskusiGuru($id)
+	{
+		$this->db->join('tbl_user', 'tbl_diskusi.id_user = tbl_user.id_user', 'left');
+		$this->db->join('tbl_guru', 'tbl_diskusi.id_guru = tbl_guru.id_guru', 'left');
+		$this->db->join('tbl_kelas', 'tbl_diskusi.id_kelas = tbl_kelas.id_kelas', 'left');
+		$this->db->where('tbl_diskusi.id_kelas', $id);
+		return $this->db->get('tbl_diskusi');
+	}
 
 }
 

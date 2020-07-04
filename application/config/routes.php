@@ -84,4 +84,9 @@ $route['admin/Import_guru/Import_data']             ='adminn/Import_guru/Import_
 
 $route['guru']                                      ='guru/welcome';
 
-$route['user'] = 'user/welcome';
+$route['siswa'] = 'user/welcome';
+$route['diskusi'] = 'user/diskusi';
+$route['materi'] = 'user/materi';
+$route['materi/view/(:any)'] = 'user/materi/view/$1';
+$route['profil'] = 'user/profile';
+$route['quiz'] = 'user/quiz';

@@ -5,7 +5,7 @@ class Login_user extends CI_Controller {
 	public function index()
 	{	
 		if ($this->session->userdata('id_siswa')) {
-			redirect('user','refresh');
+			redirect('siswa','refresh');
 		}
 		$username 		= $this->input->post('username');
 		$password 		= $this->input->post('password');	
@@ -26,7 +26,7 @@ class Login_user extends CI_Controller {
 					);
 					
 					$this->session->set_userdata( $array );
-					redirect('user','refresh');
+					redirect('siswa','refresh');
 				}else{
 					$this->session->set_flashdata('eror', 'username/password salah');
 					redirect('Login_user','refresh');

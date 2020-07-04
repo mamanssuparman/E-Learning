@@ -12,6 +12,9 @@ class Welcome extends CI_Controller {
 		// 	redirect('','refresh');
 		// }
 		//$this->load->libraries('session');
+		if ($this->session->userdata('id_siswa')) {
+			redirect('siswa','refresh');
+		}
 	}
 	public function index()
 	{

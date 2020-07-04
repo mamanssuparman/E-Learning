@@ -11,7 +11,7 @@
       <div class="icon">
         <i class="fa fa-book"></i>
       </div>
-      <a href="<?=base_url('user/materi')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="<?=base_url('materi')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-md-6 col-xs-12">
@@ -25,7 +25,7 @@
       <div class="icon">
         <i class="fa fa-edit"></i>
       </div>
-      <a href="<?php echo base_url();?>user/Quiz/" class="small-box-footer">
+      <a href="<?php echo base_url('quiz');?>/" class="small-box-footer">
         More <i class="fa fa-arrow-circle-right"></i>
       </a>
     </div>
@@ -61,7 +61,7 @@
       <div class="icon">
         <i class="fa fa-comments"></i>
       </div>
-      <a href="<?php echo base_url();?>user/Diskusi" class="small-box-footer">
+      <a href="<?php echo base_url('diskusi');?>" class="small-box-footer">
         More <i class="fa fa-arrow-circle-right"></i>
       </a>
     </div>
