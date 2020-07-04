@@ -2,8 +2,16 @@
 </div>
 <p>
 	<h3>Import Data Siswa</h3>
-</p>
+</p> 
+<div class="container">
+    <div class="row">
+        <div>
+            <a href="<?php echo base_url();?>download/Format_import.xlsx"><button class="btn btn-warning"> <li class="fa fa-download"></li> Download Format Import Siswa</button></a>
+        </div>
+    </div>
+</div>
 <div>
+    
 	<div class="row" >
         <div class="col-md-12">
             Pilih terlebih dahulu kelas sebelum melakukan Import Data

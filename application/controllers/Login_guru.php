@@ -29,9 +29,17 @@ function __construct(){
 							'nama' 			=>$ada['nama'],
 							'userguru'		=>$ada['unsername'],
 							'id_guru'		=>$ada['id_guru'],
+							'hak_akses'		=>$ada['id_akses']
 						);
 						$this->session->set_userdata($sessionnya);
-						redirect('admin','refresh');
+						//redirect('admin','refresh');
+						// untuk pembagian hak akses Guru dan SA dengan menggunakan Kondisi IF 1 = Admin 2 = Guru
+						if ($this->session->userdata('hak_akses')=='1') {
+							redirect('admin','refresh');
+						}
+						if ($this->session->userdata('hak_akses')=='2') {
+							redirect('guru','refresh');
+						}
 					}
 					else{
 						$this->session->set_flashdata('eror_admin','Password yang anda masukkan salah.!');

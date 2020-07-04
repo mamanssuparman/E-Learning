@@ -677,4 +677,8 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	{
 		$this->db->insert_batch('tbl_user',$data);
 	}
+	public function Import_guru($data)
+	{
+		$this->db->insert_batch('tbl_guru',$data);
+	}
 }

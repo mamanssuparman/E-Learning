@@ -76,6 +76,9 @@
               case 'Import':
                 $this->load->view('adminn/Import_siswa');
                 break;
+              case 'Import_guru':
+                $this->load->view('adminn/Import_guru');
+                break;
               default:
                 $this->load->view('adminn/Dashboard.php');
                 break;

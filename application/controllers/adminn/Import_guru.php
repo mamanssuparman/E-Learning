@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Import extends CI_Controller {
+class Import_guru extends CI_Controller {
 function __construct(){
 		parent:: __construct();
 		$this->load->model('Mdl_admin');
@@ -19,7 +19,7 @@ function __construct(){
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$data['judul'] 		="Extra";
-		$data['subjudul'] 	="Import Data Siswa";
+		$data['subjudul'] 	="Import Data Guru";
 		$data['title'] 		="3-learning";
 		$data['judulbesar']	="Import";
 		$data['user'] 		="";
@@ -27,20 +27,6 @@ function __construct(){
 		$data['data_kelas'] 	=$this->Mdl_admin->get_data_kelas();
 		$this->load->view('adminn/admin_view.php',$data);
     }
-    public function Siswa()
-    {
-        $this->Mdl_Cek->get_sequrity();
-		$this->Mdl_Cek->get_sequrity_guru();
-		$id_pengguna 		=$this->session->userdata('username');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
-		$data['judul'] 		="Extra";
-		$data['subjudul'] 	="Import Data Siswa";
-		$data['title'] 		="3-learning";
-		$data['judulbesar']	="Import";
-		$data['user'] 		="";
-		$data['level'] 		="";
-		$data['data_kelas'] 	=$this->Mdl_admin->get_data_kelas();
-	}
 	public function Guru()
 	{
 		$this->Mdl_Cek->get_sequrity();
@@ -55,11 +41,11 @@ function __construct(){
 		$data['level'] 		="";
 		$data['data_kelas'] 	=$this->Mdl_admin->get_data_kelas();
 	}
-	public function Import_siswa()
+	public function Import_data()
 	{
 		$this->load->library('upload');
-		$id_kelas=$this->input->post('array',TRUE);
-		$namafile="FILE_".$id_kelas.'-'.time();
+		// $id_kelas=$this->input->post('array',TRUE);
+		$namafile="FILE_".time();
 		$config['upload_path'] = './excel/';
 		$config['allowed_types'] = 'xlsx';
 		$config['max_size']	= '2048';
@@ -85,20 +71,17 @@ function __construct(){
 			if($numrow > 1){
 				// Kita push (add) array data ke variabel data
 				array_push($data, array(
-					'username'=>$row['B'], // Insert data nis dari kolom A di excel
-					'nama_siswa'=>$row['C'], // Insert data nama dari kolom B di excel
-					'panserword1'=>password_hash($row['D'],PASSWORD_DEFAULT), // Insert data jenis kelamin dari kolom C di excel
-					'id_kelas'=>$id_kelas, // Insert data alamat dari kolom D di excel
+					'nama'=>$row['C'], // Insert data nis dari kolom A di excel
+					'unsername'=>$row['B'], // Insert data nama dari kolom B di excel
+					'panserword'=>password_hash($row['D'],PASSWORD_DEFAULT), // Insert data jenis kelamin dari kolom C di excel
+					'id_akses'=>$row['E'], // Insert data alamat dari kolom D di excel
 				));
 			}
 			
 			$numrow++; // Tambah 1 setiap kali looping
 		}
-		$this->Mdl_admin->Import_siswa($data);
-		redirect('admin/Import/Siswa','refresh');
+		$this->Mdl_admin->Import_guru($data);
+		redirect('admin/Import_guru/Guru','refresh');
 	}
-	public function Import_guru()
-	{
-		
-	}
+
 }
