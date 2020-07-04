@@ -78,6 +78,10 @@ $route['admin/Quiz/Update/(:any)/(:num)']           ='adminn/Quiz/Update/$2/$1';
 
 $route['admin/Import/Siswa']                        ='adminn/Import';
 $route['admin/Import/Import_siswa']                 ='adminn/Import/Import_siswa/';
+$route['admin/Import_guru/Guru']                    ='adminn/Import_guru';
 $route['admin/Daftar_quiz/Hapus/(:any)']            ='adminn/Daftar_quiz/Delete/$2';
+$route['admin/Import_guru/Import_data']             ='adminn/Import_guru/Import_data';
+
+$route['guru']                                      ='guru/welcome';
 
 $route['user'] = 'user/welcome';

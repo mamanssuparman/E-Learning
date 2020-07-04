@@ -14,6 +14,7 @@ function __construct(){
 	{
 		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
+		// $this->Mdl_Cek->get_sequrity_akses();
 		$id_pengguna 		=$this->session->userdata('username');
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna($id_pengguna);
 		$data['judul'] 		="Dashboard";
