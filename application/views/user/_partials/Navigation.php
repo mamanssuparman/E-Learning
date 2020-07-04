@@ -13,14 +13,14 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="<?php echo base_url() ;?>index.php/user/">Beranda</a></li>
-            <li><a href="<?php echo base_url() ;?>index.php/user/Materi/">Materi Pelajaran</a></li>
+            <li><a href="<?php echo base_url() ;?>siswa/">Beranda</a></li>
+            <li><a href="<?php echo base_url() ;?>materi/">Materi Pelajaran</a></li>
             <li><a href="#">Video Pembelajaran</a></li>
-            <li><a href="#">Quiz</a></li>
+            <li><a href="<?php echo base_url() ;?>quiz/">Quiz</a></li>
             <li class="divider"></li>
-            <li><a href="#">Forum Diskusi Kelas</a></li>
+            <li><a href="<?php echo base_url() ;?>diskusi/">Forum Diskusi Kelas</a></li>
             <li class="divider"></li>
-            <li><a href="<?php echo base_url(); ?>user/Profile/">Profile</a></li>
+            <li><a href="<?php echo base_url(); ?>profil/">Profile</a></li>
           </ul>
         </li>
       </ul>

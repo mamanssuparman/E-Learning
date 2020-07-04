@@ -80,4 +80,9 @@ $route['admin/Import/Siswa']                        ='adminn/Import';
 $route['admin/Import/Import_siswa']                 ='adminn/Import/Import_siswa/';
 $route['admin/Daftar_quiz/Hapus/(:any)']            ='adminn/Daftar_quiz/Delete/$2';
 
-$route['user'] = 'user/welcome';
+$route['siswa'] = 'user/welcome';
+$route['diskusi'] = 'user/diskusi';
+$route['materi'] = 'user/materi';
+$route['materi/view/(:any)'] = 'user/materi/view/$1';
+$route['profil'] = 'user/profile';
+$route['quiz'] = 'user/quiz';

@@ -7,40 +7,35 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo base_url('_assets/bower_components/bootstrap/dist/css/bootstrap.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('_assets') ?>/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo base_url('_assets/bower_components/font-awesome/css/font-awesome.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('_assets') ?>/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="<?php echo base_url('_assets/bower_components/Ionicons/css/ionicons.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('_assets') ?>/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url('_assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>">
-  <link rel="stylesheet" href="<?php echo base_url('_assets/dist/css/AdminLTE.min.css') ?>">
+  <link rel="stylesheet" href="<?php echo base_url('_assets') ?>/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo base_url('_assets/dist/css/skins/_all-skins.min.css') ?>">
- <link rel="stylesheet" href="<?=base_url('_assets/')?>plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+  <link rel="stylesheet" href="<?php echo base_url('_assets') ?>/dist/css/skins/_all-skins.min.css">
+
 
 
 <!-- jQuery 3 -->
-<script src="<?php echo base_url('_assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
+<script src="<?php echo base_url('_assets') ?>/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="<?php echo base_url('_assets/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
-<script src="<?php echo base_url('_assets/bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
-<script src="<?php echo base_url('_assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') ?>"></script>
+<script src="<?php echo base_url('_assets') ?>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
-<script src="<?php echo base_url('_assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') ?>"></script>
+<script src="<?php echo base_url('_assets') ?>/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="<?php echo base_url('_assets/bower_components/fastclick/lib/fastclick.js') ?>"></script>
+<script src="<?php echo base_url('_assets') ?>/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo base_url('_assets/dist/js/adminlte.min.js') ?>"></script>
+<script src="<?php echo base_url('_assets') ?>/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url('_assets/dist/js/demo.js') ?>"></script>
+<script src="<?php echo base_url('_assets') ?>/dist/js/demo.js"></script>
+<!-- DataTables -->
+<script src="<?php echo base_url('_assets') ?>/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url('_assets') ?>/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
 <!-- SweetAlert2 -->
 <script src="<?=base_url('_assets/')?>plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
@@ -65,9 +60,8 @@
           <small>Example 2.0</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li><a href="#">Layout</a></li>
-          <li class="active">Top Navigation</li>
+          <li><a href="<?=base_url('siswa')?>"><i class="fa fa-dashboard"></i> user</a></li>
+          <li><a><?=$title;?></a></li>
         </ol>
       </section>
       <section class="content">
@@ -90,17 +84,6 @@
 <!-- ./wrapper -->
 
   <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
   $(".keluar").on('click',function(e) {
     e.preventDefault();
     const href = $(this).attr('href')
