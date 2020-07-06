@@ -12,6 +12,10 @@ class Welcome extends CI_Controller {
 		// 	redirect('','refresh');
 		// }
 		//$this->load->libraries('session');
+		if($this->session->userdata('hak_akses')!='2')
+		{
+			redirect('','refresh');
+		}
 	}
 	public function index()
 	{

@@ -87,7 +87,7 @@ class Mdl_admin extends CI_Model {
 	}
 	public function get_data_topik()
 	{
-		$eksekusi 		=$this->db->query("select tbl_topik.id_topik, tbl_topik.topik_nama, tbl_topik.topik_detail,count(tbl_soal.soal)as jumlah_soal from tbl_topik left outer join tbl_soal on tbl_topik.id_topik=tbl_soal.id_topik group by tbl_topik.id_topik");
+		$eksekusi 		=$this->db->query("select tbl_topik.id_topik, tbl_topik.topik_nama, tbl_topik.topik_detail,count(tbl_soal.soal)as jumlah_soal from tbl_topik left outer join tbl_soal on tbl_topik.id_topik=tbl_soal.id_topik group by tbl_topik.id_topik order by tbl_topik.id_topik DESC");
 		return $eksekusi;
 	}
 	public function Add_topik_soal()
