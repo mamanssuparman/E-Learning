@@ -16,6 +16,9 @@
               case 'Mat_pel':
                 $this->load->view('guru/Mat_pel_view');
                 break;
+              case 'Topik_soal':
+                $this->load->view('guru/Topik_soal');
+                break;
               default:
                 $this->load->view('guru/Dashboard');
                 break;

@@ -82,8 +82,12 @@ $route['admin/Import_guru/Guru']                    ='adminn/Import_guru';
 $route['admin/Daftar_quiz/Hapus/(:any)']            ='adminn/Daftar_quiz/Delete/$2';
 $route['admin/Import_guru/Import_data']             ='adminn/Import_guru/Import_data';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 $route['guru']                                      ='guru/welcome';
+$route['guru/Topik_soal/Simpan']                    ='guru/Topik_soal/Add';
 
 $route['siswa'] = 'user/welcome';
 $route['diskusi'] = 'user/diskusi';

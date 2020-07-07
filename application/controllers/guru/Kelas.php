@@ -10,6 +10,11 @@ function __construct(){
 		$this->load->library('session');
 		$this->load->helper('cookie');
 		$this->load->library('form_validation');
+		if($this->session->userdata('hak_akses')!='2')
+		{
+			redirect('','refresh');
+		}
+		
 		//$this->load->libraries('session');
 	}
 	public function index()
@@ -37,6 +42,7 @@ function __construct(){
 		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
 		// $id_pengguna 		=$this->session->userdata('username');
+		$this->Mdl_Cek->get_sequrity_akses_guru();
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('kelas','kelas','required');
 		$this->form_validation->set_rules('id_tapel','id_tapel','required');
@@ -56,6 +62,7 @@ function __construct(){
 		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
 		// $id_pengguna 		=$this->session->userdata('username');
+		$this->Mdl_Cek->get_sequrity_akses_guru();
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_kelas','id_kelas','required');
 		$this->form_validation->set_rules('kelas','kelas','required');
@@ -75,6 +82,7 @@ function __construct(){
 		$this->Mdl_Cek->get_sequrity();
 		// $this->Mdl_Cek->get_sequrity_guru();
 		// $id_pengguna 		=$this->session->userdata('username');
+		$this->Mdl_Cek->get_sequrity_akses_guru();
 		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
 		$this->form_validation->set_rules('id_kelas','id_kelas','required');
 		if ($this->form_validation->run()== FALSE) {
@@ -93,8 +101,8 @@ function __construct(){
 		// $this->Mdl_Cek->get_sequrity_guru();
 		$this->Mdl_Cek->get_sequrity_akses_guru();
 		// $id_pengguna 		=$this->session->userdata('username');
-		$idguru 		=$this->session->userdata('id_guru');
-		$data['data_pengguna'] 		=$this->Mdl_admin->get_data_pengguna();
+		$idguru 				=$this->session->userdata('id_guru');
+		$data['data_pengguna'] 	=$this->Mdl_admin->get_data_pengguna();
 
 		$data['judul'] 		="Siswa";
 		$data['subjudul'] 	="Kelas";

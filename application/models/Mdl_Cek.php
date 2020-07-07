@@ -38,7 +38,7 @@ class Mdl_Cek extends CI_Model {
 	public function get_sequrity_akses_guru()
 	{
 		$akses 		=$this->session->userdata('hak_akses');
-		if (!$akses==2) {
+		if (!$akses=='2') {
 			redirect('','refresh');
 		}
 

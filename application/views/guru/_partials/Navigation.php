@@ -97,7 +97,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/admin/Topik_soal"><i class="fa fa-circle-o"></i> Topik dan Soal</a></li>
+        <a href="<?php echo base_url();?>index.php/guru/Topik_soal"><i class="fa fa-circle-o"></i> Topik dan Soal</a></li>
       </ul>
     </li>
 <!-- End Materi Pelajaran -->
