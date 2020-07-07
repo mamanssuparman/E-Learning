@@ -7,6 +7,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-plus"></i> Add Soal</button>
+		<div class="table-responsive">
 		<table id="example1" class="table table-bordered table-hover table-nowrap">
 			<thead>
 				<tr>
@@ -36,6 +37,7 @@
 				?>
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 

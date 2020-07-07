@@ -128,7 +128,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/admin/Quiz/"><i class="fa fa-circle-o"></i> Buat Quiz</a></li>
+        <a href="<?php echo base_url();?>index.php/guru/Quiz/"><i class="fa fa-circle-o"></i> Buat Quiz</a></li>
         <li
         <?php 
           if ($subjudul='Daftar Data Quiz') {
@@ -138,7 +138,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/admin/Daftar_quiz/"><i class="fa fa-circle-o"></i> List Data Quiz</a></li>
+        <a href="<?php echo base_url();?>index.php/guru/Daftar_quiz/"><i class="fa fa-circle-o"></i> List Data Quiz</a></li>
       </ul>
     </li>
 <!-- End Menu Quiz/Ulangan -->

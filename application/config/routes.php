@@ -85,6 +85,10 @@ $route['admin/Import_guru/Import_data']             ='adminn/Import_guru/Import_
 $route['guru']                                      ='guru/welcome';
 $route['guru/Topik_soal/Simpan']                    ='guru/Topik_soal/Add';
 
+$route['guru/Quiz/Simpan']                          ='guru/Quiz/Add';
+$route['guru/Quiz/Perbaharui/(:num)/(:any)']       ='guru/Quiz/Edit/$1/$2';
+$route['guru/Quiz/Update/(:any)/(:num)']           ='guru/Quiz/Update/$2/$1';
+
 $route['siswa'] = 'user/welcome';
 $route['diskusi'] = 'user/diskusi';
 $route['materi'] = 'user/materi';
@@ -92,3 +96,5 @@ $route['materi/view/(:any)'] = 'user/materi/view/$1';
 $route['profil'] = 'user/profile';
 $route['quiz'] = 'user/quiz';
 $route['quiz/soal/(:any)/(:num)'] = 'user/quiz/soal/$1/$2';
+
+

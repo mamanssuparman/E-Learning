@@ -9,6 +9,10 @@ function __construct(){
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
 		$this->load->library('form_validation');
+		if($this->session->userdata('hak_akses')!='1')
+		{
+			redirect('','refresh');
+		}
 		//$this->load->helper('cookie');
 		//private $kunci 	=$this->uri->segment(4);
 		

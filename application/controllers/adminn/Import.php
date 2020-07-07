@@ -9,6 +9,10 @@ function __construct(){
 		$this->load->library('session');
 		$this->load->helper('cookie');
 		$this->load->library('upload');
+		if($this->session->userdata('hak_akses')!='1')
+		{
+			redirect('','refresh');
+		}
 		//$this->load->libraries('session');
 	}
 	public function index()
