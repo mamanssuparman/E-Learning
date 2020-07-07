@@ -48,6 +48,7 @@ class Quiz extends CI_Controller {
 	private function btn($x)
 	{
 		$tes = $this->mc->ambil('tbl_tes_user',['id_tes' => $x->id_tes])->row_array();
+		$tesR = $this->mq->cariTes($x->id_tes)->num_rows();
 		if (date('Y-m-d H:i:s') < $x->tes_mulai) {
 			$btn = '<button type="button" class="btn btn-danger">Belum Mulai</button>';
 		}elseif (date('Y-m-d H:i:s') > $x->tes_selesai) {
@@ -55,10 +56,19 @@ class Quiz extends CI_Controller {
 		}else{
 			if (empty($tes)) {
 				$btn = '<button type="button" class="btn btn-primary" data-id="'.$x->id_tes.'" data-toggle="modal" data-target="#soal">Kerjakan</button>';
+			}elseif ($tesR == 0) {
+				$btn = '<button type="button" class="btn btn-primary" data-id="'.$x->id_tes.'" data-toggle="modal" data-target="#soal">Kerjakan</button>';
+				
 			}elseif ($tes['tes_user_status'] == 1) {
-				$btn = '<a href="'.base_url('quiz/soal').'" class="btn btn-primary" data-id="'.$x->id_tes.'">Lanjut Mengerjakan</button>';
+				$btn = '<a href="'.base_url('quiz/soal/'.base64_encode($tes['id_tes_user']).'/1').'" class="btn btn-primary" data-id="'.$tes['id_tes_user'].'">Lanjut Mengerjakan</button>';
 			}elseif ($tes['tes_user_status'] == 3) {
-				$btn = '<a href="#" class="btn btn-danger" data-id="'.$x->id_tes.'">Hentikan</button>';
+				$q = $this->mc->ambil('tbl_tes_soal',['id_tes_user' => $tes['id_tes_user']])->result();
+				$tot = 0;
+				foreach ($q as $x) {
+					$jumlah = $x->point;
+					$tot += $jumlah;
+				}
+				$btn = $tot;
 			}else{
 				$btn = '<button type="button" class="btn btn-primary" data-id="'.$x->id_tes.'">Selesai</button>';
 			}
@@ -147,10 +157,12 @@ class Quiz extends CI_Controller {
 	{
 		$ts = $this->input->post('id_tes_soal');
 		$ij = $this->input->post('id_jawaban');
-
-		$q = $this->mc->ubah('tbl_tes_jawaban',['tes_jawaban_pilih' => 0],['id_tes_soal' => $ts]);
+		$poin = $this->input->post('poin');
+		$qj = $this->mc->ubah('tbl_tes_jawaban',['tes_jawaban_pilih' => 0],['id_tes_soal' => $ts]);
+		$q = $this->mc->ubah('tbl_tes_soal',['point' => 0],['id_tes_soal' => $ts]);
 		if ($q['status'] == 'berhasil') {
 			$q = $this->mc->ubah('tbl_tes_jawaban',['tes_jawaban_pilih' => 1],['id_jawaban' => $ij]);
+			$sP = $this->mq->set_point($ts,$ij,$poin);
 			if ($q['status'] = 'berhasil') {
 				echo json_encode(array('data' => 'berhasil'));
 			}else{
@@ -160,5 +172,13 @@ class Quiz extends CI_Controller {
 			echo json_encode(array('data' => 'error'));
 		}
 
+	}
+	function selesai($id)
+	{
+		$q = $this->mc->ubah('tbl_tes_user',['tes_user_status' => 3],['id_tes_user' => $id]);
+		if ($q['status'] == 'berhasil') {
+			   $this->session->set_flashdata('eror', 'tes selesai');
+     		redirect('quiz','refresh');
+		}
 	}
 }

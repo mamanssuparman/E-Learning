@@ -1,3 +1,5 @@
+<div class="berhasil" data-flashdata="<?=$this->session->flashdata('berhasil')?>"></div>
+<div class="eror" data-flashdata="<?=$this->session->flashdata('eror')?>"></div>
 <div class="row">
   <div class="col-12">
     
@@ -83,6 +85,7 @@
   $(document).ready(function(){
     $('#soal').on('show.bs.modal', function (e) {
         var rowid = $(e.relatedTarget).data('id');
+        console.log(rowid);
         //menggunakan fungsi ajax untuk pengambilan data
         $.ajax({
             type : 'post',
@@ -133,4 +136,17 @@
       ],
     });
   });
+  const berhasil = $('.berhasil').data('flashdata');
+  const err = $('.eror').data('flashdata');
+  if (berhasil) {
+    Toast.fire({
+          type : 'success',
+          title:  berhasil
+        })
+  }else if(err){
+    Toast.fire({
+          type : 'error',
+          title:  eror
+        })
+  }
 </script>

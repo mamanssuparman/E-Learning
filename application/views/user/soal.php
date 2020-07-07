@@ -1,10 +1,16 @@
+<?php 
+$tu= $s['id_tes_user'];
+$poin=$s['tes_score_benar'];
+ ?>
 <div class="row">
   <div class="col-md-3 col-xs-12">
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">Sisa Waktu</h3>
       </div>
-      <div class="box-body"></div>
+      <div class="box-body">
+        <div id="demo"></div>
+      </div>
     </div>
   </div>
   <div class="col-md-9 col-xs-12">
@@ -26,6 +32,9 @@
 
             <?php $ts = $x->id_tes_soal;endforeach ?>
           </div>
+          <div class="pull-right" style="padding-bottom: 5px;">
+            <a style="margin-right: 5px;" href="<?=base_url('user/quiz/selesai/'.$s['id_tes_user'])?>" class="btn btn-success selesai" title="">Selesai</a>
+          </div>  
         <!-- /.box-body -->
         <!-- /.box-footer-->
         </div>
@@ -34,7 +43,8 @@
   </div>
 </div>
 <div class="row">
-  <?php if ($s['tes_user_status'] != 1): ?>
+  <?php if ($s['tes_user_status'] == 3): ?>
+    <?php $this->session->set_flashdata('eror', 'tes selesai'); ?>
     <?php redirect('quiz','refresh');?>
   <?php endif ?>
   <div class="col-12">
@@ -64,17 +74,64 @@
   var url = '<?=base_url('user/quiz/')?>';
   function jawaban(val){
     var id_tes_soal = <?=$ts?>;
+    var poin = <?=$poin?>;
+    var id_tes_user = <?=$tu?>;
     $.ajax({
       type : 'post',
       data : {
         id_jawaban : val,
         id_tes_soal : id_tes_soal,
+        poin : poin,
+        id_tes_user : id_tes_user,
       },
       url : url+'ubahJawaban',
       success : function(response) {
-        console.log(response)
       }
     })
   }
+  $(".selesai").on('click',function(e) {
+    e.preventDefault();
+    const href = $(this).attr('href')
+    Swal.fire({
+      title : 'Apakah anda yakin menghentikan tes?',
+      type  : 'warning',
+      showCancelButton : true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yakin',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+        document.location.href = href;
+      }
+    })
+  })
+// Set the date we're counting down to
+var countDownDate = new Date("<?=$selisih?>").getTime();
 
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = hours + "Jam "
+  + minutes + "menit " + seconds + "detik ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
 </script>

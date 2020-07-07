@@ -57,7 +57,9 @@ class Mod_quiz extends CI_Model {
 	function join()
 	{
 		$this->db->join('tbl_tes', 'tbl_tes_group_kelas.id_tes = tbl_tes.id_tes', 'left');
+		// $this->db->join('tbl_tes_user', 'tbl_tes.id_tes = tbl_tes_user.id_tes', 'left');
 		$this->db->where('id_kelas', $this->session->userdata('kelas'));
+
 		$this->db->from('tbl_tes_group_kelas');
 	}
 	function ambil()
@@ -103,9 +105,12 @@ class Mod_quiz extends CI_Model {
 	{
 		$this->db->where('id_tes_user', $id);
 		$this->db->where('tes_order', $order);
-		$q = $this->db->get('tbl_tes_soal')->row_array();
+		$this->db->join('tbl_jawaban', 'tbl_tes_soal.id_soal = tbl_jawaban.id_soal', 'left');
 		$this->db->join('tbl_tes_jawaban', 'tbl_jawaban.id_jawaban = tbl_tes_jawaban.id_jawaban', 'left');
-		return $this->mc->ambil('tbl_jawaban',['id_soal' => $q['id_soal']]);
+		return $this->db->get('tbl_tes_soal');
+		// $q = $this->db->get('tbl_tes_soal')->row_array();
+		// $this->db->join('tbl_tes_jawaban', 'tbl_jawaban.id_jawaban = tbl_tes_jawaban.id_jawaban', 'left');
+		// return $this->mc->ambil('tbl_jawaban',['id_soal' => $q['id_soal']]);
 	}
 	function ambilJOin($id)
 	{
@@ -114,7 +119,23 @@ class Mod_quiz extends CI_Model {
 		$this->db->group_by('tes_order');
 		return $this->db->get('tbl_tes_soal');
 	}
-	
+	function set_point($ts,$ij,$poin)
+	{
+		$q = $this->mc->ambil('tbl_jawaban',['id_jawaban' => $ij])->row_array();
+		if ($q['status_jawaban'] == 1) {
+			$this->db->where('id_tes_soal', $ts);
+			return $this->db->update('tbl_tes_soal', ['point' => $poin]);
+		}else{
+			$this->db->where('id_tes_soal', $ts);
+			return $this->db->update('tbl_tes_soal', ['point' => 0]);
+		}
+	}
+	function cariTes($id)
+	{
+		$this->db->where('id_tes', $id);
+		$this->db->where('id_user', $this->session->userdata('id_siswa'));
+		return $this->db->get('tbl_tes_user');
+	}
 
 }
 
