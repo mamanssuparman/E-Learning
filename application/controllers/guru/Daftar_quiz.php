@@ -9,7 +9,7 @@ function __construct(){
 		$this->load->library('session');
 		$this->load->helper('cookie');
 		$this->load->library('form_validation');
-		if($this->session->userdata('hak_akses')!='1')
+		if($this->session->userdata('hak_akses')!='2')
 		{
 			redirect('','refresh');
 		}
@@ -29,7 +29,7 @@ function __construct(){
 		$data['level'] 		="";
 		$data['data_quiz'] 	=$this->Mdl_admin->get_data_quiz();
 		//$data['data_topik']	=$this->Mdl_admin->get_data_topik();
-		$this->load->view('adminn/admin_view.php',$data);
+		$this->load->view('guru/guru_view',$data);
 	}
 	public function Delete()
 	{
@@ -42,16 +42,17 @@ function __construct(){
 			$this->form_validation->set_rules('array','array','required');
 			if ($this->form_validation->run()== FALSE) {
 				$this->session->set_flashdata('gagal','Maaf, anda tidak bisa menghapus.');
-				redirect('admin/Daftar_quiz');
+				redirect('guru/Daftar_quiz');
 			}
 			else{
 				$this->Mdl_admin->Delete_quiz($idtes);
 				$this->session->set_flashdata('berhasil','Data Quiz Berhasil di hapus.!');
-				redirect('admin/Daftar_quiz');
+				redirect('guru/Daftar_quiz');
 			}
 		}
 		else{
-			redirect('admin');
+			redirect('guru');
 		}
 	}
+	
 }

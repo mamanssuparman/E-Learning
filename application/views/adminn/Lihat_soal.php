@@ -11,9 +11,15 @@
 		</h3>
 	</div>
 </div>
+<div class="row">
+	<div class="container-fluid">
+	<a href="<?php echo base_url();?>index.php/admin/Soal/index/<?php echo $this->uri->segment(4);?>/<?php echo sha1($this->uri->segment(4)); ?>"> <button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add Soal</button> </a>	
+
+	</div>
+</div>
+
 <hr>
 <div class="row">
-<a href="<?php echo base_url();?>index.php/admin/Soal/index/<?php echo $this->uri->segment(4);?>/<?php echo sha1($this->uri->segment(4)); ?>"> <button type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Add Soal</button> </a>	
 <div class="col-md-12">
 		
 	<div class="table-responsive">

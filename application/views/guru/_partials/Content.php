@@ -19,6 +19,12 @@
               case 'Topik_soal':
                 $this->load->view('guru/Topik_soal');
                 break;
+              case 'Quiz':
+                $this->load->view('guru/Quiz');
+                break;
+              case 'Daftar_quiz':
+                $this->load->view('guru/Daftar_data_quiz');
+                break;
               default:
                 $this->load->view('guru/Dashboard');
                 break;

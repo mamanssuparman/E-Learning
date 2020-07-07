@@ -38,6 +38,7 @@
 	</form>
 	<hr>
 	<p>
+		<div class="table-responsive">
 		<table id="example1" class="table table-bordered table-hover table-nowrap">
 			<thead>
 				<tr>
@@ -73,6 +74,8 @@
 			<?php endforeach;
 			?>
 		</table>
+		</div>
+		
 	</p>
 
 <!-- Modal Edit Jawaban -->

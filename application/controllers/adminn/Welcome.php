@@ -8,6 +8,10 @@ class Welcome extends CI_Controller {
 		$this->load->model('Mdl_Cek');
 		$this->load->library('session');
 		$this->load->helper('cookie');
+		if($this->session->userdata('hak_akses')!='1')
+		{
+			redirect('','refresh');
+		}
 		// if (!$this->session->userdata('user_guru')) {
 		// 	redirect('','refresh');
 		// }
