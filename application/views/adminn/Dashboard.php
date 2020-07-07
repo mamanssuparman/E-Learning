@@ -19,7 +19,7 @@
       <div class="icon">
         <i class="fa fa-clone"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/admin/Topik_soal" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/Topik_soal" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-3">
@@ -40,7 +40,7 @@
       <div class="icon">
         <i class="fa fa-edit"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/admin/List_materi/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/List_materi/" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-3">
@@ -61,7 +61,7 @@
       <div class="icon">
         <i class="fa fa-book"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/admin/Mat_pel/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/Mat_pel/" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   <div class="col-lg-3 col-3">
@@ -81,7 +81,7 @@
       <div class="icon">
         <i class="fa fa-users"></i>
       </div>
-      <a href="<?php echo base_url();?>index.php/admin/Siswa/" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+      <a href="<?php echo base_url();?>index.php/admin/Siswa/" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
 </div>
@@ -89,33 +89,39 @@
 	<div class="col-md-8">
 		<div class="card">
 		<div class="card-header border-transparent">
-		<h3 class="card-title">Data Quiz Terakhir Di Tambahkan</h3>
+		<h4 class="card-title"> <b> Data Quiz Terakhir Di Tambahkan</b></h4>
 
 		<div class="card-tools">
-		  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-		    <i class="fas fa-minus"></i>
-		  </button>
-		  <button type="button" class="btn btn-tool" data-card-widget="remove">
-		    <i class="fas fa-times"></i>
-		  </button>
+		 
 		</div>
 		</div>
 		<!-- /.card-header -->
 		<div class="card-body p-0">
 		<div class="table-responsive">
-		  <table class="table m-0">
+		  <table table id="example1" class="table table-bordered table-hover table-nowrap">
 		    <thead>
 		    <tr>
 		      <th>Nama Quiz</th>
 		      <th>Nilai Maksimal</th>
 		      <th>Waktu Mulai</th>
 		      <th>Waktu Selesai</th>
-		      <th>Durasi Waktu</th>
-
+			  <th>Durasi Waktu</th>
 		    </tr>
 		    </thead>
 		    <tbody>
-		    
+			  <?php 
+			  	foreach ($sum_quiz_terakhir->result_array() as $tampilkanquiz):
+			  ?>
+				<tr>
+					<td><?php echo $tampilkanquiz['tes_nama'] ?></td>
+					<td><?php echo $tampilkanquiz['tes_score_maksimal'] ?></td>
+					<td><?php echo $tampilkanquiz['tes_mulai'] ?></td>
+					<td><?php echo $tampilkanquiz['tes_selesai'] ?></td>
+					<td><?php echo $tampilkanquiz['durasi_waktu'] ?></td>
+				</tr>
+			  <?php 
+				endforeach;
+			  ?>
 		    </tbody>
 		  </table>
 		</div>
@@ -123,8 +129,7 @@
 		</div>
 		<!-- /.card-body -->
 		<div class="card-footer clearfix">
-		<a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Buat Quiz</a>
-		<a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Lihat Semua Daftar Quiz</a>
+		<a href="<?php echo base_url();?>index.php/admin/Daftar_quiz/" class="btn btn-sm btn-secondary float-right">Lihat Semua Daftar Quiz</a>
 		</div>
 		<!-- /.card-footer -->
 		</div>
@@ -132,21 +137,27 @@
 	<div class="col-md-4">
 		<div class="card">
 		<div class="card-header">
-		<h3 class="card-title">Materi Terakhir Di Tambahkan</h3>
-
+		<h4 class="card-title"> <b> Materi Terakhir Di Tambahkan</b></h4>
 		<div class="card-tools">
-		  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-		    <i class="fas fa-minus"></i>
-		  </button>
-		  <button type="button" class="btn btn-tool" data-card-widget="remove">
-		    <i class="fas fa-times"></i>
-		  </button>
+		  
 		</div>
 		</div>
 		<!-- /.card-header -->
 		<div class="card-body p-0">
 		<ul class="products-list product-list-in-card pl-2 pr-2">
-		
+			<div class="table-responsive">
+			<table table id="example1" class="table table-bordered table-hover table-nowrap">
+		    <thead>
+		    <tr>
+			  <th>Judul Materi</th>
+			  <th>Nama Mapel</th>
+		    </tr>
+		    </thead>
+		    <tbody>
+			  
+		    </tbody>
+		  </table>
+			</div>
 		  <!-- /.item -->
 		</ul>
 		</div>

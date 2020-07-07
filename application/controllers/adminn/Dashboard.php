@@ -33,6 +33,7 @@ function __construct(){
 		$data['sum_data_mapel']	=$this->Mdl_admin->get_sum_data_mapel();
 		$data['sum_data_materi']	=$this->Mdl_admin->get_sum_data_materi();
 		$data['sum_data_soal'] 		=$this->Mdl_admin->get_sum_data_soal();
+		$data['sum_quiz_terakhir']	=$this->Mdl_admin->get_data_quiz_terakhir();
 		$this->load->view('adminn/admin_view.php',$data);
 	}
 }

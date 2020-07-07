@@ -43,7 +43,7 @@ function __construct(){
 		$this->form_validation->set_rules('nama','nama','required|htmlspecialchars');
 		$this->form_validation->set_rules('panserword','panserword','required|htmlspecialchars');
 		$this->form_validation->set_rules('tempat_lahir','tempat_lahir','required|htmlspecialchars');
-
+		$this->form_validation->set_rules('akses','akses','required|htmlspecialchars');
 		if ($this->form_validation->run()== FALSE) {
 			$this->session->set_flashdata('gagal','Data Guru gagal di simpan.!');
 			redirect('admin/Guru');
@@ -66,6 +66,7 @@ function __construct(){
 		$this->form_validation->set_rules('nama','nama','required');
 		$this->form_validation->set_rules('panserword','panserword','htmlspecialchars');
 		$this->form_validation->set_rules('tempat_lahir','tempat_lahir','required');
+		$this->form_validation->set_rules('akses','akses','required|htmlspecialchars');
 		if ($this->form_validation->run()== FALSE) {
 			$this->session->set_flashdata('gagal','Data Guru gagal di perbaharui, dikarenakan ada data yang tidak sesuai atau kurang lengkap.!');
 			redirect('admin/Guru');

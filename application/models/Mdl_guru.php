@@ -23,7 +23,7 @@ class Mdl_guru extends CI_Model {
 	}
 	public function get_data_materi($idmapel,$idguru)
 	{
-		return $this->db->query('SELECT tbl_mapel_kelas_guru_group.*, tbl_mapel.nama_mapel, tbl_materi.judul_materi, tbl_materi.detail_materi, tbl_guru.nama from tbl_mapel_kelas_guru_group JOIN tbl_mapel on tbl_mapel_kelas_guru_group.id_mapel=tbl_mapel.id_mapel join tbl_materi on tbl_mapel.id_mapel=tbl_materi.id_mapel join tbl_guru on tbl_guru.id_guru=tbl_mapel_kelas_guru_group.id_guru WHERE tbl_mapel_kelas_guru_group.id_guru='.$idguru.' AND tbl_mapel_kelas_guru_group.id_mapel='.$idmapel.' GROUP BY tbl_mapel_kelas_guru_group.id_mapel');
+		return $this->db->query('SELECT tbl_mapel_kelas_guru_group.*, tbl_mapel.nama_mapel, tbl_materi.id_materi, tbl_materi.judul_materi, tbl_materi.detail_materi, tbl_guru.nama from tbl_mapel_kelas_guru_group JOIN tbl_mapel on tbl_mapel_kelas_guru_group.id_mapel=tbl_mapel.id_mapel join tbl_materi on tbl_mapel.id_mapel=tbl_materi.id_mapel join tbl_guru on tbl_guru.id_guru=tbl_mapel_kelas_guru_group.id_guru WHERE tbl_mapel_kelas_guru_group.id_guru='.$idguru.' AND tbl_mapel_kelas_guru_group.id_mapel='.$idmapel.' group by tbl_materi.id_materi');
 	}
 	public function get_data_mapelguru($idguru)
 	{
@@ -92,5 +92,18 @@ class Mdl_guru extends CI_Model {
 		$this->db->set($data);
 		$this->db->where('id_jawaban',$idjawaban);
 		$this->db->update('tbl_jawaban');
+	}
+	public function save_materi($idmapel)
+	{
+		$data=array(
+			'judul_materi' 	=>$this->input->post('judul_materi',TRUE),
+			'detail_materi'	=>$this->input->post('detail_materi',TRUE),
+			'id_mapel' 		=>$idmapel,
+		);
+		$this->db->insert('tbl_materi',$data);
+	}
+	public function get_data_materi_detail($idmateri)
+	{
+		return $this->db->query('SELECT tbl_mapel_kelas_guru_group.*, tbl_mapel.nama_mapel, tbl_materi.id_materi, tbl_materi.judul_materi, tbl_materi.detail_materi, tbl_guru.nama from tbl_mapel_kelas_guru_group JOIN tbl_mapel on tbl_mapel_kelas_guru_group.id_mapel=tbl_mapel.id_mapel join tbl_materi on tbl_mapel.id_mapel=tbl_materi.id_mapel join tbl_guru on tbl_guru.id_guru=tbl_mapel_kelas_guru_group.id_guru WHERE tbl_materi.id_materi='.$idmateri.' group by tbl_materi.id_materi');
 	}
 }

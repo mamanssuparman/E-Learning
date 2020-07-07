@@ -27,7 +27,7 @@
                         <td><?php echo $tampilkan['nama_mapel'] ?></td>
                         <td><?php echo $tampilkan['judul_materi'] ?></td>
                         <td>
-                            <a href="<?php echo base_url();?>index.php/guru/Mat_pel/Detail/<?php echo $tampilkan['id_mapel'] ?>/<?php echo sha1($tampilkan['id_mapel']) ?>"><button class="btn btn-warning btn-xs" title="Lihat Materi"> <li class="fa fa-search"></li> </button></a>
+                            <a href="<?php echo base_url();?>index.php/guru/Mat_pel/Detail/<?php echo $tampilkan['id_materi'] ?>/<?php echo sha1($tampilkan['id_materi']) ?>"><button class="btn btn-warning btn-xs" title="Lihat Materi"> <li class="fa fa-search"></li> </button></a>
                         </td>
                     </tr>
                 <?php 

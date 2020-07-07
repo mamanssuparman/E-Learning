@@ -30,6 +30,7 @@
                         <td><?php echo $tampilkan['nama_kelas'] ?></td>
                         <td>
                             <a href="<?php echo base_url();?>index.php/guru/Mat_pel/List_materi/<?php echo $tampilkan['id_mapel']?>/<?php echo sha1($tampilkan['id_mapel']) ?>"><button class="btn btn-warning btn-xs" title="Lihat Materi"> <li class="fa fa-search"></li> </button></a>
+                            <a href="<?php echo base_url();?>index.php/guru/Mat_pel/Add/<?php echo $tampilkan['id_mapel'] ?>/<?php echo sha1($tampilkan['id_mapel']) ?>"> <button class="btn btn-primary btn-xs" title="Tambah Materi"> <li class="fa fa-plus"></li> </button></a>
                         </td>
                     </tr>
                 <?php 

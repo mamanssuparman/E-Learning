@@ -365,18 +365,23 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$panserword 	=password_hash($this->input->post('panserword', TRUE),PASSWORD_DEFAULT);
 		$tempat_lahir 	=$this->input->post('tempat_lahir',TRUE);
 		$tgl_lahir 		=$this->input->post('tgl_lahir', TRUE);
+		$akses 			=$this->input->post('akses',TRUE);
 		$data=array(
 			'nama' 			=>$nama,
 			'unsername' 	=>$username,
 			'panserword' 	=>$panserword,
 			'tempat_lahir' 	=>$tempat_lahir,
-			'tgl_lahir'		=>$tgl_lahir
+			'tgl_lahir'		=>$tgl_lahir,
+			'id_akses'		=>$akses,
 		);
 		$this->db->insert('tbl_guru',$data);
 	}
 	public function get_data_guru()
 	{
-		return $this->db->get('tbl_guru');
+		$this->db->select('*');
+		$this->db->from('tbl_guru');
+		$this->db->join('tbl_akses','tbl_guru.id_akses=tbl_akses.id_akses');
+		return $this->db->get();
 		
 	}
 	public function get_data_mapel_group()
@@ -462,6 +467,12 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		// $eksekusi 	=$this->db->query("select * from tbl_tes");
 		// return $eksekusi;
 	}
+	public function get_data_quiz_terakhir()
+	{
+		$this->db->order_by('id_tes','DESC');
+		$this->db->limit(10);
+		return $this->db->get('tbl_tes');
+	}
 	public function get_data_quiz_edit($id_quiz)
 	{
 		$this->db->where('id_tes',$id_quiz);
@@ -472,6 +483,10 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 	{
 		$eksekusi 	=$this->db->query("SELECT tbl_kelas.*, tbl_diskusi.id_diskusi from tbl_kelas left outer join tbl_diskusi on tbl_kelas.id_kelas=tbl_diskusi.id_kelas GROUP BY tbl_kelas.id_kelas");
 		return $eksekusi;
+	}
+	public function get_data_diskusi_guru($idguru)
+	{
+		return $this->db->query('SELECT tbl_mapel_kelas_guru_group.*, tbl_kelas.nama_kelas, tbl_guru.nama from tbl_mapel_kelas_guru_group join tbl_kelas on tbl_mapel_kelas_guru_group.id_kelas=tbl_kelas.id_kelas join tbl_guru on tbl_mapel_kelas_guru_group.id_guru=tbl_guru.id_guru where tbl_guru.id_guru='.$idguru.'');
 	}
 	public function get_data_join_forum($id_kelas)
 	{
@@ -519,17 +534,20 @@ from tbl_materi left outer join tbl_mapel on tbl_materi.id_mapel=tbl_mapel.id_ma
 		$nama 			=$this->input->post('nama',TRUE);
 		$tempat_lahir 	=$this->input->post('tempat_lahir',TRUE);
 		$tgl_lahir 		=$this->input->post('tgl_lahir',TRUE);
+		$akses 			=$this->input->post('akses',TRUE);
 		$password 		=password_hash($this->input->post('panserword',TRUE),PASSWORD_DEFAULT);
 		$data=array(
 			'nama' 			=>$nama,
 			'tempat_lahir'	=>$tempat_lahir,
-			'tgl_lahir' 	=>$tgl_lahir
+			'tgl_lahir' 	=>$tgl_lahir,
+			'id_akses' 		=>$akses,
 		);
 		$data1=array(
 			'nama' 			=>$nama,
 			'tempat_lahir'	=>$tempat_lahir,
 			'tgl_lahir' 	=>$tgl_lahir,
-			'panserword'	=>$password
+			'panserword'	=>$password,
+			'id_akses'		=>$akses,
 		);
 		if (empty($this->input->post('panserword',TRUE))) {
 			$this->db->set($data);

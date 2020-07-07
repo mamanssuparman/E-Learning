@@ -25,6 +25,12 @@
               case 'Daftar_quiz':
                 $this->load->view('guru/Daftar_data_quiz');
                 break;
+              case 'Forum':
+                $this->load->view('guru/Forum');
+                break;
+              case 'Join_forum':
+                $this->load->view('guru/Join_forum');
+                break;
               default:
                 $this->load->view('guru/Dashboard');
                 break;

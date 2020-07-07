@@ -7,6 +7,9 @@
         case 'Detail':
             $this->load->view('guru/_data_mat_pel_detail');
             break;
+        case 'Add':
+            $this->load->view('guru/_data_mat_pel_add');
+            break;
         default:
             $this->load->view('guru/_data_mat_pel');
             break;

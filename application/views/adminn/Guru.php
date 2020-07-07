@@ -16,6 +16,7 @@
 					<th>Nama</th>
 					<th>Username</th>
 					<th>Tempat & Tgl. Lahir</th>
+					<th>Akses</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -28,6 +29,7 @@
 							echo "<td>$showguru[nama]</td>";
 							echo "<td>$showguru[unsername]</td>";
 							echo "<td>$showguru[tempat_lahir], $showguru[tgl_lahir]</td>";
+							echo "<td>$showguru[ket]</td>";
 							echo "<td><button class='btn btn-info btn-xs' title='Edit' data-toggle='modal' data-target='#modal-edit-$showguru[id_guru]'><li class='fa fa-edit'></li></button></td>";
 						echo "</tr>";
 					endforeach;
@@ -65,11 +67,21 @@
 	      </p>
 	      <p>
 	      	Password
-	      </p>
-	      <p>
+		  </p>
+		  <p>
 			<input type="password" name="panserword" class="form form-control" maxlength="8">
 			<p><i>* Panjang Maksimal 8 karakter</i></p>  
-	      </p>
+		  </p>
+		  <p>
+			  Hak Akses
+		  </p> 
+		  <p>
+			  <select name="akses" id="" class="form-control">
+				  <option value="1">Super Admin</option>
+				  <option value="2">Admin</option>
+			  </select>
+		  </p>
+	      
 	      <p>
 	      	TTTL
 	      </p>
@@ -124,7 +136,16 @@
 			<input type="password" name="panserword" class="form form-control" maxlength="8">
 			<p> <i>* Panjang Maksimal 8 karakter</i> </p>
 			<p> <i>Jika Password tidak ingin dirubah, maka kosongkan saja.</i> </p>
-	      </p>
+		  </p>
+		  <p>
+			  Hak Akses
+		  </p> 
+		  <p>
+			  <select name="akses" id="" class="form-control">
+				  <option value="1">Super Admin</option>
+				  <option value="2">Admin</option>
+			  </select>
+		  </p>
 	      <p>
 	      	TTTL
 	      </p>

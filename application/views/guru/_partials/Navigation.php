@@ -139,6 +139,16 @@
           }
         ?>
         <a href="<?php echo base_url();?>index.php/guru/Daftar_quiz/"><i class="fa fa-circle-o"></i> List Data Quiz</a></li>
+        <li
+        <?php 
+          if ($subjudul='Hasil Test') {
+            echo "class='active'>";
+          }
+          else{
+            echo "class=''>";
+          }
+        ?>
+        <a href="<?php echo base_url();?>index.php/guru/Hasil_tes/"><i class="fa fa-circle-o"></i> Hasil Test</a></li>
       </ul>
     </li>
 <!-- End Menu Quiz/Ulangan -->
@@ -169,7 +179,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Forum/"><i class="fa fa-circle-o"></i> List Group Chat</a></li>
+        <a href="<?php echo base_url();?>index.php/guru/Forum/"><i class="fa fa-circle-o"></i> List Group Chat</a></li>
       </ul>
     </li>
 <!-- End Menu Chat/ Forum -->
