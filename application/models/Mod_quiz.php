@@ -80,8 +80,39 @@ class Mod_quiz extends CI_Model {
 	}
 	function ambilJawaban($table,$jawaban)
 	{
-		$this->db->where_in('id_soal', $jawaban);
-		return $this->db->get('tbl_jawaban');
+		$this->db->join('tbl_jawaban', 'tbl_tes_soal.id_soal = tbl_jawaban.id_soal', 'right');
+		$this->db->where_in('tbl_tes_soal.id_soal', $jawaban);
+		return $this->db->get('tbl_tes_soal');
+	}
+	function ambilS($id)
+	{
+		$q = $this->mc->ambil('tbl_tes_user',['id_tes_user' => $id])->row_array();
+
+		$this->db->join('tbl_tes', 'tbl_tes_user.id_tes = tbl_tes.id_tes', 'right');
+		$this->db->where('tbl_tes.id_tes',$q['id_tes']);
+		return $this->db->get('tbl_tes_user');
+	}
+	function ambilSK($id,$order)
+	{
+		$this->db->where('id_tes_user', $id);
+		$this->db->where('tes_order', $order);
+		$this->db->join('tbl_soal', 'tbl_tes_soal.id_soal = tbl_soal.id_soal', 'left');
+		return $this->db->get('tbl_tes_soal');
+	}
+	function ambilJK($id,$order)
+	{
+		$this->db->where('id_tes_user', $id);
+		$this->db->where('tes_order', $order);
+		$q = $this->db->get('tbl_tes_soal')->row_array();
+		$this->db->join('tbl_tes_jawaban', 'tbl_jawaban.id_jawaban = tbl_tes_jawaban.id_jawaban', 'left');
+		return $this->mc->ambil('tbl_jawaban',['id_soal' => $q['id_soal']]);
+	}
+	function ambilJOin($id)
+	{
+		$this->db->join('tbl_tes_jawaban', 'tbl_tes_soal.id_tes_soal = tbl_tes_jawaban.id_tes_soal', 'right');
+		$this->db->where('id_tes_user', $id);
+		$this->db->group_by('tes_order');
+		return $this->db->get('tbl_tes_soal');
 	}
 	
 

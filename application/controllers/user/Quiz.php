@@ -56,7 +56,9 @@ class Quiz extends CI_Controller {
 			if (empty($tes)) {
 				$btn = '<button type="button" class="btn btn-primary" data-id="'.$x->id_tes.'" data-toggle="modal" data-target="#soal">Kerjakan</button>';
 			}elseif ($tes['tes_user_status'] == 1) {
-				$btn = '<button type="button" class="btn btn-primary" data-id="'.$x->id_tes.'">Lanjut Mengerjakan</button>';
+				$btn = '<a href="'.base_url('quiz/soal').'" class="btn btn-primary" data-id="'.$x->id_tes.'">Lanjut Mengerjakan</button>';
+			}elseif ($tes['tes_user_status'] == 3) {
+				$btn = '<a href="#" class="btn btn-danger" data-id="'.$x->id_tes.'">Hentikan</button>';
 			}else{
 				$btn = '<button type="button" class="btn btn-primary" data-id="'.$x->id_tes.'">Selesai</button>';
 			}
@@ -68,6 +70,20 @@ class Quiz extends CI_Controller {
 		$id = $this->input->post('rowid');
 		$q = $this->mc->ambil('tbl_tes',['id_tes' => $id])->row_array();
 		echo json_encode(array('data'=>$q));
+	}
+	function soal($id,$order)
+	{
+		$id = base64_decode($id);
+		$data = array(
+			'siswa' => $this->mc->ambil('tbl_user',['id_user' => $this->session->userdata('id_siswa')])->row_array(),
+			'kelas' => $this->mc->ambil('tbl_kelas',['id_kelas' => $this->session->userdata('kelas')])->row_array(),
+			's'		=> $this->mq->ambilS($id)->row_array(),
+			'title' => 'Soal',
+			'soal'	=> $this->mq->ambilSK($id,$order)->row_array(),
+			'jawaban'	=> $this->mq->ambilJK($id,$order)->result(),
+			'ambilOrder' => $this->mq->ambilJOin($id)->result(),
+		);
+		$this->elearning->user('user/soal',$data);
 	}
 	function mulai()
 	{
@@ -94,12 +110,27 @@ class Quiz extends CI_Controller {
 			$simpanSoal = $this->mc->simpanArray('tbl_tes_soal',$dataS);
 			if ($simpanSoal['status'] == 'berhasil') {
 				$ambilSoal = $this->mc->ambil('tbl_tes_soal',['id_tes_user' => $q['id']])->result();
-				
+				$datab = array();
 				foreach ($ambilSoal as $x) {
 					$ids[] = $x->id_soal;
-					$ambilJawaban[] = $this->mq->ambilJawaban('tbl_jawaban',$ids)->result();
+					$ambilJawaban = $this->mq->ambilJawaban('tbl_jawaban',$ids)->result();
 				} 
-				var_dump($ambilJawaban);die();
+				foreach ($ambilJawaban as $aj) {
+					$dataJ[] = array(
+						'id_tes_soal' 	=> $aj->id_tes_soal,
+						'id_jawaban' 	=> $aj->id_jawaban,
+						'tes_jawaban_pilih' => 0,
+ 					);
+				}
+				$simpanJawaban = $this->mc->simpanArray('tbl_tes_jawaban',$dataJ);
+				if ($simpanJawaban['status'] == 'berhasil') {
+					redirect('quiz/soal/'.base64_encode($q['id']).'/1','refresh');
+				}else{
+					$this->mc->hapus('tbl_tes_user',['id_tes_user' => $q['id']]);
+					$this->mc->hapus('tbl_tes_soal',['id_tes_jawaban' => $simpanSoal['id']]);
+					$this->session->set_flashdata('eror', 'gagal mengerjakan');
+					redirect('quiz','refresh');
+				}
 			}else{
 				$this->mc->hapus('tbl_tes_user',['id_tes_user' => $q['id']]);
 				$this->session->set_flashdata('eror', 'gagal mengerjakan');
@@ -109,6 +140,24 @@ class Quiz extends CI_Controller {
 		}else{
 			$this->session->set_flashdata('eror', 'gagal mengerjakan');
 			redirect('quiz','refresh');
+		}
+
+	}
+	function ubahJawaban()
+	{
+		$ts = $this->input->post('id_tes_soal');
+		$ij = $this->input->post('id_jawaban');
+
+		$q = $this->mc->ubah('tbl_tes_jawaban',['tes_jawaban_pilih' => 0],['id_tes_soal' => $ts]);
+		if ($q['status'] == 'berhasil') {
+			$q = $this->mc->ubah('tbl_tes_jawaban',['tes_jawaban_pilih' => 1],['id_jawaban' => $ij]);
+			if ($q['status'] = 'berhasil') {
+				echo json_encode(array('data' => 'berhasil'));
+			}else{
+				echo json_encode(array('data' => 'error'));				
+			}
+		}else{
+			echo json_encode(array('data' => 'error'));
 		}
 
 	}
