@@ -169,7 +169,7 @@
             echo "class=''>";
           }
         ?>
-        <a href="<?php echo base_url();?>index.php/adminn/Forum/"><i class="fa fa-circle-o"></i> List Group Chat</a></li>
+        <a href="<?php echo base_url();?>guru/Forum/"><i class="fa fa-circle-o"></i> List Group Chat</a></li>
       </ul>
     </li>
 <!-- End Menu Chat/ Forum -->
