@@ -1,5 +1,9 @@
  <!-- DIRECT CHAT -->
+<<<<<<< HEAD
  <div class="box box-warning direct-chat direct-chat-warning">
+=======
+      <div class="box box-warning direct-chat direct-chat-warning">
+>>>>>>> master
         <div class="box-header with-border">
           <h3 class="box-title">Diskusi kelas <?=$kelas['nama_kelas']?></h3>
         </div>
@@ -27,7 +31,11 @@
       </div>
       <script>
   var url = '<?=base_url('')?>';
+<<<<<<< HEAD
   var chat_kelas = '<?=$kelas['id_kelas']?>' ;
+=======
+  var chat_kelas = '<?=$kelas['id_kelas']?>';
+>>>>>>> master
   $(document).ready(function(){
     //ambil data
     showChat();
@@ -46,7 +54,11 @@
 
     function showChat() {
       $.ajax({
+<<<<<<< HEAD
         url   : url+'guru/Join_forum/getChat',
+=======
+        url   : url+'guru/join_forum/getChat',
+>>>>>>> master
         data : {
             kelas : chat_kelas,
         },
@@ -59,7 +71,11 @@
     $('.b-kirim').on('click',function() {
       var f = $('.kirim').serialize();
       $.ajax({
+<<<<<<< HEAD
         url   : url+'guru/Join_forum/kirimChat',
+=======
+        url   : url+'guru/join_forum/kirimChat',
+>>>>>>> master
         type  : 'post',
         data  : f,
         success : function(response){

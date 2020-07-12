@@ -16,7 +16,11 @@
 			<div class="icon">
 				<i class="fa fa-wechat"></i>
 			</div>
+<<<<<<< HEAD
 			<a href="<?php echo base_url();?>index.php/guru/Join_forum/group/<?php echo $showdatadiskusi['id_kelas']; ?>" class="small-box-footer">Join Forum <i class="fa fa-arrow-circle-right"></i></a>
+=======
+			<a href="<?php echo base_url();?>guru/Join_forum/group/<?php echo $showdatadiskusi['id_kelas']; ?>" class="small-box-footer">Join Forum <i class="fa fa-arrow-circle-right"></i></a>
+>>>>>>> master
 		</div>
 		</<div>
 	</div>

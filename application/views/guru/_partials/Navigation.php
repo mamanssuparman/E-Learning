@@ -179,7 +179,11 @@
             echo "class=''>";
           }
         ?>
+<<<<<<< HEAD
         <a href="<?php echo base_url();?>index.php/guru/Forum/"><i class="fa fa-circle-o"></i> List Group Chat</a></li>
+=======
+        <a href="<?php echo base_url();?>guru/Forum/"><i class="fa fa-circle-o"></i> List Group Chat</a></li>
+>>>>>>> master
       </ul>
     </li>
 <!-- End Menu Chat/ Forum -->

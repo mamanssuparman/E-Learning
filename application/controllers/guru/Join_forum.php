@@ -41,7 +41,11 @@ function __construct(){
 	{
 		$id = $this->input->post('kelas');
 		$data['diskusi'] = $this->mc->ambilDiskusiGuru($id)->result();
+<<<<<<< HEAD
 		$res = array('view' => $this->load->view('guru/isiChat', $data));
+=======
+		$res = array('view' => $this->load->view('adminn/isiChat', $data));
+>>>>>>> master
 		echo json_encode($res);
 	}
 	function kirimChat()
