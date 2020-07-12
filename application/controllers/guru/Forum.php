@@ -26,14 +26,9 @@ function __construct(){
 		$data['title'] 		="3-learning";
 		$data['judulbesar']	="List Group Chat";
 		$data['user'] 		="";
-<<<<<<< HEAD
         $data['level'] 		="";
         $idguru 		=$this->session->userdata('id_guru');
 		$data['data_diskusi'] 	=$this->Mdl_admin->get_data_diskusi_guru($idguru);
-=======
-		$data['level'] 		="";
-		$data['data_diskusi'] 	=$this->Mdl_admin->get_data_diskusi();
->>>>>>> master
 		$this->load->view('guru/guru_view.php',$data);
 	}
 }
