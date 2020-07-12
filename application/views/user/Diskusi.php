@@ -66,9 +66,14 @@
         data  : f,
         success : function(response){
             $('[name="diskusi_chat"]').val('');
-            $(".direct-chat-messages").scrollTop($(".direct-chat-messages").height()); 
+            // $(".direct-chat-messages").scrollTop($(".direct-chat-messages").height()); 
+            $('.direct-chat-messages').animate({
+                scrollTop: $('.direct-chat-messages').get(0).scrollHeight
+            }, 100);
+            
         }
       });
     })
   })
+    
 </script>
