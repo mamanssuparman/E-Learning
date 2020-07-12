@@ -172,7 +172,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0
     </div>
-    <strong>Copyright &copy; 2020 <a href="http://smkn3-banjar.sch.id/">ICT SMK Negeri 3 Banjar</a>.</strong> All rights
+    <strong>Copyright &copy; 2020 <a href="http://smkn3-banjar.sch.id/">OmenSoft</a>.</strong> All rights
     reserved.
     Template By <strong>AdminLTE</strong>
   </footer>
